@@ -1,36 +1,49 @@
 <html>
     <head>
+    	<!-- always load css  first -->
+		<link rel="stylesheet" href="../infusion/fss/css/fss-reset.css" />
+		<link rel="stylesheet" href="../infusion/fss/css/fss-layout.css" />
+		<link rel="stylesheet" href="../infusion/fss/css/fss-text.css" />
+		<link rel="stylesheet" href="../infusion/fss/css/fss-theme-mist.css" />
+		<link rel="stylesheet" href="../infusion/fss/css/fss-theme-coal.css" />
+
+
+
+		
+    	<!-- script data goes after css data -->
         <script type="text/javascript" src="InfusionAll.js"></script>
         <script type="text/javascript" src="../js/CurrencyNTime.js"></script>
     </head>    
     
-    <body>
-        <h1>
-        	Latte's Currency Tracker
-        </h1>
-        
-        <p>Pick a date range:</p>
-        <label for="">From:</label>
-        <select name="dateFrom">
-        	<option value=""></option>
-        </select>
-        
-        <label for="">To:</label>
-        <select name="dateTo">
-        	<option value=""></option>
-        </select>
-        
-        <p>The rates are as follows:</p>
-        
-        <table>
-        	<tr>
-        		<th>Date</th>
-        		<th>Rate</th>
-        	</tr>
-        	<tr>
-        		<td>A Date</td>
-        		<td>A Rate</td>
-        	</tr>
-        </table>
+    <body class="fl-theme-mist fl-col-flex2">
+        <h1>Latte's Currency Tracker</h1>
+        <div class="fl-col">
+	        <p>Pick a date range:</p>
+			
+	        <label for="dfrom">From:</label>
+	        <select id="dfrom" name="dateFrom">
+	        	<option value=""></option>
+	        </select>
+	        
+	        <label for="dto">To:</label>
+	        <select id="dto" name="dateTo">
+	        	<option value=""></option>
+	        </select>
+        </div>
+		
+		<div class="fl-col">
+	        <p>The rates are as follows:</p>
+	        
+	        <table class="fl-container-flex">
+	        	<tr>
+	        		<th>Date</th>
+	        		<th>Rate</th>
+	        	</tr>
+	        	<tr>
+	        		<td>A Date</td>
+	        		<td>A Rate</td>
+	        	</tr>
+	        </table>
+		</div>
     </body>
 </html>
