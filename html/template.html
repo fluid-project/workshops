@@ -6,18 +6,19 @@
 		<link rel="stylesheet" href="../infusion/fss/css/fss-text.css" />
 		<link rel="stylesheet" href="../infusion/fss/css/fss-theme-mist.css" />
 		<link rel="stylesheet" href="../infusion/fss/css/fss-theme-coal.css" />
-
+    <link rel="stylesheet" href="../css/currencyNTime.css" />
 
 
 		
     	<!-- script data goes after css data -->
-        <script type="text/javascript" src="InfusionAll.js"></script>
+        <script type="text/javascript" src="../infusion/InfusionAll.js"></script>
         <script type="text/javascript" src="../js/CurrencyNTime.js"></script>
     </head>    
     
     <body class="fl-theme-mist fl-col-flex2">
+    <div class="converter">
         <h1>Latte's Currency Tracker</h1>
-        <div class="fl-col">
+        <div class="fl-col flc-currency-select">
 	        <p>Pick a date range:</p>
 			
 	        <label for="dfrom">From:</label>
@@ -45,5 +46,20 @@
 	        	</tr>
 	        </table>
 		</div>
+    
+    <div class="hidden flc-currencyNTime-errorMsg">
+      I'm sorry, but a terrible, catastrophic error has occured. We're so sorry!
+    </div>
+    </div>
+    <script>
+        latte.fetchStaticRates("../data/rates.json", 
+            function(rates) {
+            var component = latte.currencyNTime(".converter", {
+                fetchRates: latte.currencyNTime.localFetch,
+                localRates: rates
+            } )
+        });
+    </script>
+    
     </body>
 </html>
