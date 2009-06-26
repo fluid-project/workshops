@@ -18,6 +18,13 @@ var latte = latte || {};
         });
     }
     
+    function makeCutpoint(selectors, ID, selectorName) {
+          return {
+                id: ID,
+                selector: selectors[selectorName]
+            };
+        }
+    
     var renderSelectionUI = function(that) {
         // Loop through the model and create a list 
         // containing all available dates.
@@ -26,35 +33,37 @@ var latte = latte || {};
                 return row.date;
         }));
         
+        function makeSelection(ID, binding) {
+            return {
+              ID: ID,
+              selection: {valuebinding: binding},
+              optionlist: dates
+            };
+        }
+        
         // Build up a tree, which provides instructions to the renderer.
         var modelTree = {children: [
-            {
-              ID: "dateFrom",
-              selection: {valuebinding: "startDate", value: ""},
-              optionlist: dates
-            },
-            {
-              ID: "dateTo",          
-              selection: {valuebinding: "endDate", value: ""},
-              optionlist: dates
-            }]
+            makeSelection("dateFrom", "startDate"),
+            makeSelection("dateTo", "endDate")
+            ]
         };
         
         var selectors = that.options.selectors;
         
-        fluid.selfRender(that.locate("currencySelect"), modelTree,{
-            cutpoints: [ {
-                id: "dateFrom",
-                selector: selectors.dateFrom
-            },
-            {
-                id: "dateTo",
-                selector: selectors.dateTo
-            }
+        fluid.selfRender(that.locate("currencySelect"), modelTree, {
+            cutpoints: [ 
+               makeCutpoint(selectors, "dateFrom", "dateFrom"),
+               makeCutpoint(selectors, "dateTo", "dateTo")
             ],
             model: that.model,
             applier: that.applier,
             autoBind: true
+        });
+        that.applier.modelChanged.addListener("*", function() {
+            var slice = that.options.fetchRates(that);
+            if (slice) {
+                latte.currencyNTime.renderTable(that, slice);
+            }
         });
     };
     
@@ -75,8 +84,6 @@ var latte = latte || {};
         };
         that.applier = fluid.makeChangeApplier(that.model);
         renderSelectionUI(that);
-        //that.options.fetchRates(that);
-        
     };
     
     
@@ -89,10 +96,52 @@ var latte = latte || {};
         setupCurrencyNTime(that);
         return that;
     };
+    
+    latte.currencyNTime.isValidRange = function(model) {
+        return model.startDate && model.endDate &&
+            model.startDate < model.endDate;
+    };
+   
+    fluid.setLogging(true);
+    
+    latte.currencyNTime.renderTable = function (that, slice) {
+        var selectors = that.options.selectors;
+        var renderOptions = {
+            cutpoints: [
+                makeCutpoint(selectors, "row:", "currencyRow"),
+                makeCutpoint(selectors, "rate", "currencyRate"),
+                makeCutpoint(selectors, "date", "currencyDate")
+            ]
+        };
+        //var tree = {"row:": slice};
+        var tree = { "children" : 
+           fluid.transform(slice, function(row) {
+               return {
+                 ID: "row:",
+                 children: [
+                    {ID: "date",
+                     value: row.date},
+                    {ID: "rate",
+                     value: row.rate}
+                 ]
+               }  
+           })};
+        fluid.selfRender(that.locate("currencyTable"), tree, renderOptions);
+    };
    
     latte.currencyNTime.localFetch = function (that) {
-        var index1 = $.inArray(that.options.localRates, that.model.startDate);
-        var index2 = $.inArray(that.options.localRates, that.model.endDate);
+        fluid.log("localFetch executed");
+        if (!latte.currencyNTime.isValidRange(that.model)) {
+            return null;
+        }
+        function findIndex(date) {
+            return fluid.find(that.options.localRates, function(row, index) {
+                return row.date === date? index : null;
+            });
+        }
+        var index1 = findIndex(that.model.startDate);
+        var index2 = findIndex(that.model.endDate);
+        fluid.log("Valid indexes - start: " + index1 + " end: " + index2);
         var togo = [];
         for (var i = 0; i < (index2 - index1); ++ i) {
             togo[i] = that.options.localRates[i + index1];
@@ -122,7 +171,11 @@ var latte = latte || {};
             dateFrom: "#dfrom",
             dateTo: "#dto",
             currencySelect: ".flc-currency-select",
-            politeErrorMessage: ".flc-currencyNTime-errorMsg"
+            politeErrorMessage: ".flc-currencyNTime-errorMsg",
+            currencyTable: ".flc-currency-table",
+            currencyRow: ".flc-currency-row",
+            currencyDate: ".flc-currency-date",
+            currencyRate: ".flc-currency-rate"
         },
         
         events: {

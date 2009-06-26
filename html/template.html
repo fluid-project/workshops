@@ -8,8 +8,6 @@
 		<link rel="stylesheet" href="../infusion/fss/css/fss-theme-coal.css" />
     <link rel="stylesheet" href="../css/currencyNTime.css" />
 
-
-		
     	<!-- script data goes after css data -->
         <script type="text/javascript" src="../infusion/InfusionAll.js"></script>
         <script type="text/javascript" src="../js/CurrencyNTime.js"></script>
@@ -35,14 +33,14 @@
 		<div class="fl-col">
 	        <p>The rates are as follows:</p>
 	        
-	        <table class="fl-container-flex">
+	        <table class="fl-container-flex flc-currency-table">
 	        	<tr>
 	        		<th>Date</th>
 	        		<th>Rate</th>
 	        	</tr>
-	        	<tr>
-	        		<td>A Date</td>
-	        		<td>A Rate</td>
+	        	<tr class="flc-currency-row">
+	        		<td class="flc-currency-date">A Date</td>
+	        		<td class="flc-currency-rate">A Rate</td>
 	        	</tr>
 	        </table>
 		</div>
@@ -54,10 +52,11 @@
     <script>
         latte.fetchStaticRates("../data/rates.json", 
             function(rates) {
-            var component = latte.currencyNTime(".converter", {
-                fetchRates: latte.currencyNTime.localFetch,
-                localRates: rates
-            } )
+                var currencyOptions = {
+                    fetchRates: latte.currencyNTime.localFetch,
+                    localRates: rates
+                };
+                var component = latte.currencyNTime(".converter", currencyOptions);
         });
     </script>
     
