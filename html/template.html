@@ -16,7 +16,8 @@
     <body class="fl-theme-mist fl-col-flex2">
     <div class="converter">
         <h1>Latte's Currency Tracker</h1>
-        <div class="fl-col flc-currency-select">
+        <div class="fl-col">
+          <div class="flc-currency-select">
 	        <p>Pick a date range:</p>
 			
 	        <label for="dfrom">From:</label>
@@ -28,12 +29,16 @@
 	        <select id="dto" name="dateTo">
 	        	<option value=""></option>
 	        </select>
+          </div>
+          <div class="flc-invalid-range hidden">
+              Please select a valid date range, with the start date before the end date.
+          </div>
         </div>
 		
-		<div class="fl-col">
+		<div class="fl-col flc-currency-table">
 	        <p>The rates are as follows:</p>
 	        
-	        <table class="fl-container-flex flc-currency-table">
+	        <table class="fl-container-flex">
 	        	<tr>
 	        		<th>Date</th>
 	        		<th>Rate</th>
@@ -45,7 +50,7 @@
 	        </table>
 		</div>
     
-    <div class="hidden flc-currencyNTime-errorMsg">
+    <div class="hidden flc-currency-errorMsg">
       I'm sorry, but a terrible, catastrophic error has occured. We're so sorry!
     </div>
     </div>

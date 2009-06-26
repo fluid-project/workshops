@@ -25,6 +25,17 @@ var latte = latte || {};
             };
         }
     
+    var showInvalidState = function(that, isInvalid) {
+        if (isInvalid) {
+            that.locate("currencySelect").addClass(that.options.styles.invalidRange);
+            that.locate("invalidRangeMessage").show();
+        }
+        else {
+            that.locate("currencySelect").removeClass(that.options.styles.invalidRange);
+            that.locate("invalidRangeMessage").hide();
+        }
+    }
+    
     var renderSelectionUI = function(that) {
         // Loop through the model and create a list 
         // containing all available dates.
@@ -61,7 +72,12 @@ var latte = latte || {};
         });
         that.applier.modelChanged.addListener("*", function() {
             if (latte.currencyNTime.isValidRange(that.model)) {
+                showInvalidState(that, false);
                 that.options.fetchRates(that);
+            }
+            else {
+                showInvalidState(that, true);
+                that.events.sliceReady.fire(that, null);
             }
         });
     };
@@ -83,6 +99,7 @@ var latte = latte || {};
         };
         that.applier = fluid.makeChangeApplier(that.model);
         renderSelectionUI(that);
+        that.events.sliceReady.fire(that, null);
     };
     
     
@@ -103,29 +120,43 @@ var latte = latte || {};
    
     fluid.setLogging(true);
     
-    latte.currencyNTime.renderTable = function (that, slice) {
-        var selectors = that.options.selectors;
-        var renderOptions = {
-            cutpoints: [
-                makeCutpoint(selectors, "row:", "currencyRow"),
-                makeCutpoint(selectors, "rate", "currencyRate"),
-                makeCutpoint(selectors, "date", "currencyDate")
-            ]
+    latte.currencyNTime.renderTable = function() { 
+        var renderTemplate = null;
+        return function (that, slice) {
+            slice = slice || [];
+            if (slice.length === 0) {
+                that.locate("currencyTable").hide();
+                return;
+            }
+            var selectors = that.options.selectors;
+            var renderOptions = {
+                cutpoints: [
+                    makeCutpoint(selectors, "row:", "currencyRow"),
+                    makeCutpoint(selectors, "rate", "currencyRate"),
+                    makeCutpoint(selectors, "date", "currencyDate")
+                ]
+            };
+            //var tree = {"row:": slice};
+            var tree = { "children" : 
+               fluid.transform(slice, function(row) {
+                   return {
+                     ID: "row:",
+                     children: [
+                        {ID: "date",
+                         value: row.date},
+                        {ID: "rate",
+                         value: row.rate}
+                     ]
+                   }  
+               })};
+            if (renderTemplate) {
+                fluid.reRender(renderTemplate, that.locate("currencyTable"), tree, renderOptions);
+            }
+            else {
+                renderTemplate = fluid.selfRender(that.locate("currencyTable"), tree, renderOptions);
+            }
+            that.locate("currencyTable").show();
         };
-        //var tree = {"row:": slice};
-        var tree = { "children" : 
-           fluid.transform(slice, function(row) {
-               return {
-                 ID: "row:",
-                 children: [
-                    {ID: "date",
-                     value: row.date},
-                    {ID: "rate",
-                     value: row.rate}
-                 ]
-               }  
-           })};
-        fluid.selfRender(that.locate("currencyTable"), tree, renderOptions);
     };
    
     latte.currencyNTime.localFetch = function (that) {
@@ -159,22 +190,26 @@ var latte = latte || {};
     fluid.defaults("latte.currencyNTime", {     
         // All of our default configuration goes here.
         fetchRates: latte.currencyNTime.ajaxFetch,
+        styles: {
+            invalidRange: "fl-invalid-range"
+        },
         selectors: {
             dateFrom: "#dfrom",
             dateTo: "#dto",
             currencySelect: ".flc-currency-select",
-            politeErrorMessage: ".flc-currencyNTime-errorMsg",
+            politeErrorMessage: ".flc-currency-errorMsg",
             currencyTable: ".flc-currency-table",
             currencyRow: ".flc-currency-row",
             currencyDate: ".flc-currency-date",
-            currencyRate: ".flc-currency-rate"
+            currencyRate: ".flc-currency-rate",
+            invalidRangeMessage: ".flc-invalid-range"
         },
         
         events: {
             sliceReady: null
         },
         listeners: {
-            "sliceReady.render": latte.currencyNTime.renderTable
+            "sliceReady.render": latte.currencyNTime.renderTable()
         }
     });
     
