@@ -60,9 +60,8 @@ var latte = latte || {};
             autoBind: true
         });
         that.applier.modelChanged.addListener("*", function() {
-            var slice = that.options.fetchRates(that);
-            if (slice) {
-                latte.currencyNTime.renderTable(that, slice);
+            if (latte.currencyNTime.isValidRange(that.model)) {
+                that.options.fetchRates(that);
             }
         });
     };
@@ -130,10 +129,6 @@ var latte = latte || {};
     };
    
     latte.currencyNTime.localFetch = function (that) {
-        fluid.log("localFetch executed");
-        if (!latte.currencyNTime.isValidRange(that.model)) {
-            return null;
-        }
         function findIndex(date) {
             return fluid.find(that.options.localRates, function(row, index) {
                 return row.date === date? index : null;
@@ -141,12 +136,11 @@ var latte = latte || {};
         }
         var index1 = findIndex(that.model.startDate);
         var index2 = findIndex(that.model.endDate);
-        fluid.log("Valid indexes - start: " + index1 + " end: " + index2);
-        var togo = [];
+        var slice = [];
         for (var i = 0; i < (index2 - index1); ++ i) {
-            togo[i] = that.options.localRates[i + index1];
+            slice[i] = that.options.localRates[i + index1];
         }
-        return togo;
+        that.events.sliceReady.fire(that, slice);
     };
    
     latte.currencyNTime.ajaxFetch = function (that) {
@@ -156,12 +150,10 @@ var latte = latte || {};
                dataType: "json",
                data: that.model,
                success: function (data) {
-                   that.results = data;
+                   that.events.sliceReady.fire(that, data);
                },
                error: that.showErrorMessage
             });
-            
-            return that.options.sampleData;
         };
    
     fluid.defaults("latte.currencyNTime", {     
@@ -179,7 +171,10 @@ var latte = latte || {};
         },
         
         events: {
-            
+            sliceReady: null
+        },
+        listeners: {
+            "sliceReady.render": latte.currencyNTime.renderTable
         }
     });
     
