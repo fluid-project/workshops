@@ -1,4 +1,4 @@
-/*global fluid*/
+/*global fluid $*/
 
 var latte = latte || {};
 
