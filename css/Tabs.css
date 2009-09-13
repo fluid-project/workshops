@@ -1,0 +1,74 @@
+/* TABS */
+			
+#tabs {
+	margin:8px 0 0 ;
+	padding:1px 0 0;
+	border: none;
+}
+
+#tabs li {
+	float:left;
+	background:url("../images/tab_right.gif") no-repeat right top;
+	margin:1px -1px -1px 0;
+	padding: 0;
+	list-style:none;
+	outline: 0;
+}
+
+#tabs a {
+	display:block;
+	background:url("../images/tab_left.gif") no-repeat left top;
+	padding:3px 12px 4px;
+	font-family: tahoma, verdana, sans-serif;
+	font-size:93%;
+	text-decoration: none;
+	color: #666;
+	border: 0;
+}
+
+#tabs a:hover {
+	color: black;
+}
+
+#tabs li.highlighted {
+	margin-top: 0;
+	background-image:url("../images/tab_right_hilight.gif");
+}
+
+#tabs li.highlighted a {
+	background-image:url("../images/tab_left_hilight.gif");
+	padding-top: 4px;
+	padding-bottom:5px;
+	color: #333;
+}
+
+#tabs li.selected, #tabs li:hover {
+	margin-top: 0;
+	background-image:url("../images/tab_right_on.gif");
+}
+
+#tabs li.selected a, #tabs li:hover a {
+	background-image:url("../images/tab_left_on.gif");
+	padding-top: 4px;
+	padding-bottom:5px;
+	color: #333;
+}
+
+#panels {
+	border: 1px solid #999;
+	clear: both;
+	background: #FFF3B3;
+	padding-top: 0;
+	margin-bottom: 1em;
+	width: 562px;
+}
+
+#panels > div {
+	padding: 1em;
+	background: #FFF;
+	min-height: 250px;
+}
+
+#panels > div h2 {
+	margin-top: 0;
+}

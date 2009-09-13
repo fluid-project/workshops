@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <title>Accessible Tabs Demo</title>
+ 	<link rel="stylesheet" href="../css/Tabs.css" type="text/css" media="screen" charset="utf-8" />
+    
+    <!-- jQuery itself -->
+    <script type="text/javascript" src="../../fluid-all/infusion/src/webapp/lib/jquery/core/js/jquery.js"></script>
+    
+    <!-- Infusion Keyboard Accessibility plugin & its dependencies -->
+    <script type="text/javascript" src="../../fluid-all/infusion/src/webapp/lib/jquery/ui/js/ui.core.js"></script>
+    <script type="text/javascript" src="../../fluid-all/infusion/src/webapp/lib/jquery/plugins/delegate/js/jquery.delegate.js"></script>
+    <script type="text/javascript" src="../../fluid-all/infusion/src/webapp/framework/core/js/jquery.keyboard-a11y.js"></script>
+    
+    <!-- Tab demo -->
+    <script type="text/javascript" src="../js/Tabs.js"></script>
+  </head>
+
+  <body>
+    <h1>Accessible Tabs Demo</h1>
+
+    <div id="accessibleTabs">
+        
+        <!-- The tabs are specified in an ordered list. Good semantic markup means we can degrade -->
+        <!-- gracefully on old browsers or when JavaScript or CSS are turned off.                 -->
+        <ol id="tabs">
+            <li id="catsTab"><a href="#catsPanel" tabindex="-1"><span>Cats</span></a></li>
+            <li id="dogsTab"><a href="#dogsPanel" tabindex="-1"><span>Dogs</span></a></li>
+            <li id="hamstersTab"><a href="#hamstersPanel" tabindex="-1"><span>Hamsters</span></a></li>
+            <li id="alligatorsTab"><a href="#alligatorsPanel" tabindex="-1"><span>Alligators</span></a></li>
+        </ol>
+    
+        <!-- The panels for each tab are just an ordinary set of divs, but the markup is flexible.-->
+        <div id="panels">
+          <div id="catsPanel">
+            <p>
+                Cats <a href="http://icanhascheezburger.com/2007/01/11/i-can-has-cheezburger/">meow</a>.
+            </p>
+            
+            <p>
+                The cat (Felis catus), also known as the domestic cat or housecat to distinguish it from other 
+                felines and felids, is a small carnivorous mammal that is valued by humans for its companionship and its 
+                ability to hunt vermin and household pests. It has been associated with humans for at least 9,500 years
+                and is currently the most popular pet in the world.
+            </p>
+            
+          </div>
+          <div id="dogsPanel">
+            <p>
+                Dogs <a href="http://thebark.com/">bark</a>.
+            </p>
+            <p>
+                The dog is a domesticated form of the Gray Wolf, a member of the Canidae family of the order Carnivora. 
+                The term is used for both feral and pet varieties. The domestic dog has been one of the most widely kept 
+                working and companion animals in human history.
+            </p>
+            
+          </div>
+          <div id="hamstersPanel">
+            <p>
+                Hamsters <a href="http://en.wikipedia.org/wiki/Hamster_wheel">wheel</a>.
+            </p>
+            <p>
+                Hamsters are crepuscular. In the wild, they burrow underground in the daylight to avoid being caught by 
+                predators. Their diet contains a variety of foods, including dried food, berries, nuts, fresh fruits and 
+                vegetables. In the wild they will eat any wheat, nuts and small bits of fruit and vegetables that they might 
+                find lying around on the ground, and will occasionally eat small insects such as small fruitflies or mealworms. 
+                They have elongated fur-lined pouches on both sides of their heads that extend to their shoulders, which they 
+                stuff full of food to be stored, brought back to the colony or to be eaten later.
+            </p>
+          </div>
+          <div id="alligatorsPanel">
+            <p>
+                Alligators <a href="http://www.drinknation.com/drink/Alligator-Bite">bite</a>.
+            </p>
+            <p>
+                An Alligator is a crocodilian in the genus Alligator of the family Alligatoridae. The name alligator is an 
+                anglicized form of the Spanish el lagarto (the lizard), the name by which early Spanish explorers and settlers 
+                in Florida called the alligator. There are two living alligator species: the American alligator (Alligator 
+                mississippiensis) and the Chinese alligator (Alligator sinensis).
+            </p>
+          </div>
+        </div>
+    </div>
+  </body>
+</html>
