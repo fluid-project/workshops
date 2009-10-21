@@ -1,11 +1,29 @@
+ol {
+    margin:10px 0;
+}
+ol li {
+    list-style-type:none;
+}
+a {text-decoration:none;}
 .search-bar a {
     font-size:0.9em;
     margin:7px 55px 0 0;
 }
 .search {
     padding:10px;
-    width:300px;
+    width:335px;
 }
-
-.results {    
+.results a {
+    font-size:1.5em;
+    color:#333 !important;    
+}
+.results .fl-icon {
+    width:64px;
+    height:64px;
+    margin-left:0;
+}
+.results a span {
+    font-size:.75em;
+    display:block;
+    color:#666;
 }
