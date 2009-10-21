@@ -1,0 +1,113 @@
+<project name="FluidEngage" default="releaseBuild" basedir=".">
+    <description>
+      Build a distributable package of Fluid Engage.
+      
+      To build a distribution, type: ant
+    </description>
+
+    <property file="build.properties"/>
+    <import file="buildutils.xml"/>
+
+    <target name="initDirs" depends="clean">
+        <mkdir dir="${products}" />
+        <mkdir dir="${build-mini}" />
+        <mkdir dir="${build-source}" />
+    </target>
+    
+    <target name="infusionBuild">
+        <ant dir="${infusion-scripts}" target="customBuild" inheritAll="false" />
+        
+        <copy todir="${build-mini-webapp}/infusion" >
+            <fileset dir="${infusion-dist}">
+                <exclude name="**/*.war" />
+            </fileset>
+        </copy>
+        
+        <copy todir="${build-source-webapp}/infusion" >
+            <fileset dir="${infusion-src-dist}">
+                <exclude name="**/*.war" />
+            </fileset>
+        </copy>
+    </target>
+    
+    <target name="engageCoreBuild">
+        <copy todir="${build-source-webapp}/engage-core">
+            <fileset dir="${engage-core}"></fileset>
+        </copy>
+        
+        <copy todir="${build-mini-webapp}/engage-core">
+          <fileset dir="${engage-core}" excludes="**/*.js,**/*.css" />
+        </copy>
+
+      <antcall target="minify">
+        <param name="fromDir" value="${build-source-webapp}/engage-core" />
+        <param name="toDir" value="${build-mini-webapp}/engage-core" />
+        <param name="file-pattern" value="*.js" />
+        <param name="lineBreakArg" value="" />
+      </antcall>
+
+      <antcall target="minify">
+        <param name="fromDir" value="${build-source-webapp}/engage-core" />
+        <param name="toDir" value="${build-mini-webapp}/engage-core" />
+        <param name="file-pattern" value="*.css" />
+        <param name="lineBreakArg" value="--line-break 0" />
+      </antcall>
+    </target>
+     
+    <target name="engageServerBuild">
+        <copy todir="${build-source-webapp}">
+            <fileset dir="${engage-webapp}">
+                <exclude name="**/engage*Config.json" />
+            </fileset>
+        </copy>
+        <copy tofile="${build-source-webapp}/application/engageConfig.json" file="${engage-webapp}/application/engageStandaloneConfig.json" />
+        <copy todir="${build-source}/src/java">
+            <fileset dir="${engage-java}"></fileset>
+        </copy> 
+
+        <copy todir="${build-mini}">
+            <fileset dir="${build-source}"></fileset>
+        </copy> 
+    </target>
+    
+    <!-- Copies the files required to build a war file -->
+    <target name="copyWARFiles">        
+      <copy todir="${todir}" >
+        <fileset dir="${base-dir}">
+            <include name="pom.xml" />
+        </fileset>
+      </copy>
+      <copy todir="${todir}/licenses" flatten="true">
+        <fileset dir="${base-dir}">
+            <include name="**/*LICENSE.txt" />
+            <exclude name="${build}" />
+            <exclude name="${products}" />
+        </fileset>
+      </copy>
+    </target>
+        
+    <target name="distWAR">
+      <antcall target="copyWARFiles">
+        <param name="todir" value="${build-source}" />
+      </antcall>
+      <antcall target="buildWAR">
+        <param name="fromdir" value="${build-source}" />
+        <param name="tofile" value="${products}/${warfile-src}" />
+        <param name="warfile" value="${warfile}" />
+      </antcall>
+
+      <antcall target="copyWARFiles">
+        <param name="todir" value="${build-mini}" />
+      </antcall>
+      <antcall target="buildWAR">
+        <param name="fromdir" value="${build-mini}" />
+        <param name="tofile" value="${products}/${warfile}" />
+        <param name="warfile" value="${warfile}" />
+      </antcall>
+    </target>
+
+    <target name="releaseBuild" depends="initDirs, infusionBuild, engageCoreBuild, engageServerBuild, distWAR" 
+        description="Builds and packages a release bundle of Engage.">
+    </target>
+        
+</project>
