@@ -9,21 +9,57 @@ a {text-decoration:none;}
     font-size:0.9em;
     margin:7px 55px 0 0;
 }
-.search {
+.fl-theme-slate .results a {
+    display:block;
+    position:relative;
+    color:#333 !important;    
+    overflow:auto;    
+}
+.fl-theme-slate input.search {
     padding:10px;
     width:335px;
 }
-.results a {
-    font-size:1.5em;
-    color:#333 !important;    
+.fl-theme-slate .results li {
+    float:left;
 }
-.results .fl-icon {
+.fl-theme-slate .results .fl-icon {
     width:64px;
     height:64px;
-    margin-left:0;
+    margin:0;
+    border:1px solid #fff;
 }
-.results a span {
+.fl-theme-slate .results .fl-link-summary {
     font-size:.75em;
-    display:block;
     color:#666;
+    display:none;
+}
+.fl-theme-slate .results .title {
+    position:absolute;
+    bottom:5px;
+    left:5px;
+    width:64px;
+    background-color:#000;
+    border:1px solid #fff;
+    text-align:center;
+    color:#fff;
+    display:none;    
+}
+.fl-theme-slate .results a:hover .title {
+    display: inline;
+}
+
+.fl-theme-slate .fl-list-menu,
+.fl-theme-slate .fl-list-menu li {border:none;}
+
+/********************************/
+/* custom mods */
+.fl-theme-myTheme {
+    background: -webkit-gradient(radial, 50% 0%, 5, 50% 0%, 10, from(#fff), to(#000)) repeat top center;
+    -webkit-background-origin: padding-box; 
+    -webkit-background-clip: content-box;
+    -webkit-background-size: 30px;
+    
+}
+.fl-theme-myTheme .fl-list-menu li {
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFA200), to(#CF0000));
 }
