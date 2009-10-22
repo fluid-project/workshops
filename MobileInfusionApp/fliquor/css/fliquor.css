@@ -23,8 +23,8 @@ a {text-decoration:none;}
     float:left;
 }
 .fl-theme-slate .results .fl-icon {
-    width:64px;
-    height:64px;
+    width:128px;
+    height:128px;
     margin:0;
     border:1px solid #fff;
 }
@@ -37,7 +37,7 @@ a {text-decoration:none;}
     position:absolute;
     bottom:5px;
     left:5px;
-    width:64px;
+    right:5px;
     background-color:#000;
     border:1px solid #fff;
     text-align:center;
@@ -84,18 +84,61 @@ a {text-decoration:none;}
         ),
         -webkit-gradient(linear, left top, left bottom, 
             from(#CCC),
-            to(#333)
+            color-stop(0.5, #444),
+            to(#CCC)
         )
     ;
     background-repeat: repeat, initial, initial, initial, initial;
     background-attachment: initial, initial, initial, initial, initial;
     -webkit-background-clip: initial, initial, initial, initial, content-box;
     -webkit-background-origin: initial, initial, initial, initial,  padding-box;
-    -webkit-background-size: 50px 50px, 50px 50px, 50px 50px, 50px 50px, 1px 400%;
+    -webkit-background-size: 50px 50px, 50px 50px, 50px 50px, 50px 50px, 1px 500%;
+}
+.fl-theme-myTheme .fl-navbar {
+    border-top-color:#fff;
+    border-bottom-color:#000;
+    background-image: -webkit-gradient(linear, left top, left bottom, 
+        from(rgba(223,223,223,0.75)),
+        color-stop(0.5, rgba(239,239,239,0.75)),
+        color-stop(0.50, rgba(191,191,191,0.75)),
+        to(rgba(159,159,159,0.75))
+    );
+    border-top:1px solid #fff;
+    border-bottom:1px solid #000;
+    -webkit-box-shadow: 0px 3px 3px #888;
+}
+.fl-theme-myTheme .fl-navbar .fl-button-inner {
+    background-image: -webkit-gradient(linear, left top, left bottom, 
+        from(rgba(50,50,50,1)),
+        color-stop(0.5, rgba(100,100,100,1)),
+        color-stop(0.5, rgba(50,50,50,1)),
+        to(rgba(50,50,50,1))
+    );
+    border:2px solid #000;
+    color:#fff;
+    font-weight:normal
+}
+.fl-theme-myTheme .fl-list-menu {
+    -webkit-box-shadow: 0px 5px 10px #333;
+    -webkit-border-radius:8px;
 }
 .fl-theme-myTheme .fl-list-menu li {
     background: -webkit-gradient(linear, left top, left bottom, 
-        from(#FFD100),
-        to(#FFA200)
-    );
+        from(rgba(50,50,50,1)),
+        color-stop(0.1, rgba(100,100,100,1)),
+        color-stop(0.10, rgba(75,75,75,1)),
+        color-stop(0.9, rgba(100,100,100,1)),
+        to(rgba(50,50,50,1))
+    );    
+}
+.fl-theme-myTheme .fl-list-menu li a {
+    color:#fff;
+}
+.fl-theme-myTheme .fl-list-menu li .fl-icon {
+    -webkit-box-shadow: 0px 0px 3px #000;
+}
+.fl-theme-myTheme .fl-link-summary span {
+    color:#ccc;
+    display:block;
+    font-size:.9em;
 }
