@@ -25,6 +25,14 @@ var fliquor = fliquor || {};
 	    });
 	};
     
+    var storeTemplate = function (that) {
+        that.template = that.locate("template").clone();
+    };
+    
+    var clearTemplate = function (that) {
+        that.locate("templateContainer").html("");
+    };
+    
     var mapData = function (that, data) {
         if(data.stat === "ok") {
             var photos = data.photos.photo;
@@ -39,7 +47,15 @@ var fliquor = fliquor || {};
     };
     
     var renderData = function (that, data) {
-        
+        clearTemplate(that);
+        $.each(data, function (index, object) {
+            var templateClone = that.template.clone();
+            templateClone.filter("a").attr({href: object.flickrPage});
+            templateClone.filter("img").attr({src: object.imageSource, title: object.imageTitle, alt: object.imageTitle});
+            templateClone.filter(that.options.selectors.templateTitle).text(object.imageTitle);
+            that.locate("templateContainer").append(templateClone);
+        });
+        that.events.afterRender.fire(that, data);
     };
     
     var dataFetchComplete = function (that) {
@@ -57,6 +73,7 @@ var fliquor = fliquor || {};
     
     var setup = function (that) {
         bindEvents(that);
+        storeTemplate(that);
     };
     
     /**
@@ -81,6 +98,11 @@ var fliquor = fliquor || {};
     fluid.defaults("fliquor.imageViewer", {
         
         selectors: {
+            searchButton: ".flc-fliquor-searchButton",
+            searchBox: ".flc-fliquor-search", 
+            template: ".flc-fliquor-template",
+            templateContainer: ".flc-fliquor-templateContainer",
+            templateTitle: ".title"
         },
         
         styles: {
@@ -93,7 +115,8 @@ var fliquor = fliquor || {};
         
         events: {
             afterImagesReturnedFromFlickr: null,
-            imageFetchError: null
+            imageFetchError: null,
+            afterRender: null
         }
     });
     
