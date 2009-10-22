@@ -54,12 +54,48 @@ a {text-decoration:none;}
 /********************************/
 /* custom mods */
 .fl-theme-myTheme {
-    background: -webkit-gradient(radial, 50% 0%, 5, 50% 0%, 10, from(#fff), to(#000)) repeat top center;
-    -webkit-background-origin: padding-box; 
-    -webkit-background-clip: content-box;
-    -webkit-background-size: 30px;
-    
+ background:
+        /* Bottom Right indent */
+        -webkit-gradient(radial, 75% 88%, 0, 75% 74%, 8,
+            from(rgb(200,200,200)),
+            color-stop(0.7, rgb(80,80,80)),
+            color-stop(0.9, rgba(0,0,0,0)),
+            to(rgba(0,0,0,0))
+        ),
+        -webkit-gradient(radial, 75% 90%, 0, 75% 75%, 9,
+            from(rgb(230,230,230)),
+            color-stop(0.5, rgb(255,255,255)),
+            color-stop(0.80, rgba(64,64,64,1)),
+            to(rgba(64,64,64,0))
+        ),
+
+        /* Upper Left indent */
+        -webkit-gradient(radial, 25% 38%, 0, 25% 24%, 8,
+            from(rgb(200,200,200)),
+            color-stop(0.7, rgb(80,80,80)),
+            color-stop(0.9, rgba(0,0,0,0)),
+            to(rgba(0,0,0, 0))
+        ),
+        -webkit-gradient(radial, 25% 40%, 0, 25% 25%, 9,
+            from(rgb(230,230,230)),
+            color-stop(0.5, rgb(255,255,255)),
+            color-stop(0.80, rgba(64,64,64,1)),
+            to(rgba(64,64,64,0))
+        ),
+        -webkit-gradient(linear, left top, left bottom, 
+            from(#CCC),
+            to(#333)
+        )
+    ;
+    background-repeat: repeat, initial, initial, initial, initial;
+    background-attachment: initial, initial, initial, initial, initial;
+    -webkit-background-clip: initial, initial, initial, initial, content-box;
+    -webkit-background-origin: initial, initial, initial, initial,  padding-box;
+    -webkit-background-size: 50px 50px, 50px 50px, 50px 50px, 50px 50px, 1px 400%;
 }
 .fl-theme-myTheme .fl-list-menu li {
-    background: -webkit-gradient(linear, left top, left bottom, from(#FFA200), to(#CF0000));
+    background: -webkit-gradient(linear, left top, left bottom, 
+        from(#FFD100),
+        to(#FFA200)
+    );
 }
