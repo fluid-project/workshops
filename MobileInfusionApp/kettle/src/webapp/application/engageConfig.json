@@ -4,38 +4,18 @@ handlerFunction: "fluid.kettle.servlet.process",
 includes: "kettle/KettleIncludes.json",
 includesPrefix: "kettle/",
 loaderFunction: "fluid.engage.initEngageApp",
-queryURLTemplate: "http://titan.atrc.utoronto.ca:5984/%dbName/_fti/lucene/%view?include_docs=true&q=%query",
 initServices: [
-    "fluid.artifactView.initMarkupFeed", 
-    "fluid.artifactView.initDataFeed", 
-    "fluid.browseDemo.initBrowseDemo",
-    "fluid.browseDemo.initBrowseDataFeed",
-    "fluid.engageDemo.initEngageDemo",
-    "fluid.kettleDemo.initCherryDemo",
-    "fluid.kettleDemo.initJSGIHandlerDemo"
+    "fliquor.initMarkupFeed",
+    "fliquor.initDataFeed"
 ],
-views: {
-    all: "all",
-    byCollectionCategory: "by_collection_category"
-},
 mount: {
     infusion: {
         target: "infusion/",
-        source: "../../../infusion/src/webapp/"
+        source: "../../../infusion/"
         },
-    engage: {
-        target: "engage-core/",
-        source: "../../../engage-core/"
-        },
-    engageDemo: {
-        target: "engageDemo/",
-        source: "services/engageDemo/",
-        rewriteSource: "../../engageDemo/"
-      },
-    kettleDemo: {
-        target: "kettleDemo/",
-        source: "services/kettleDemo/",
-        rewriteSource: "../../services/kettleDemo/"
+    fliquor: {
+        target: "fliquor/",
+        source: "../../../fliquor/"
       }
     }
 debugMode: true
