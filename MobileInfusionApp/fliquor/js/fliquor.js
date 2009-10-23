@@ -50,25 +50,48 @@ var fliquor = fliquor || {};
         clearTemplate(that);
         $.each(data, function (index, object) {
             var templateClone = that.template.clone();
-            templateClone.filter("a").attr({href: object.flickrPage});
-            templateClone.filter("img").attr({src: object.imageSource, title: object.imageTitle, alt: object.imageTitle});
-            templateClone.filter(that.options.selectors.templateTitle).text(object.imageTitle);
+            templateClone.find("a").attr({href: object.flickrPage});
+            templateClone.find("img").attr({src: object.imageSource, title: object.imageTitle, alt: object.imageTitle});
+            templateClone.find(that.options.selectors.templateTitle).text(object.imageTitle);
             that.locate("templateContainer").append(templateClone);
         });
         that.events.afterRender.fire(that, data);
     };
     
+    var swapClasses = function (oldClass, newClass, element) {
+        element.removeClass(oldClass);
+        element.addClass(newClass);
+    };
+    
     var dataFetchComplete = function (that) {
+        var searchStyle = that.options.styles.searching;
+        var displayStyle = that.options.styles.displayResults;
+        
         var displayData = function (data) {
             var mappedData = mapData(that, data);
             renderData(that, mappedData);
+            swapClasses(searchStyle, displayStyle, that.container);
         };
         
         that.events.afterImagesReturnedFromFlickr.addListener(displayData);
     };
     
+    var activateSearch = function (that) {
+        var oldStyle = that.options.styles.displayResults;
+        var newStyle = that.options.styles.searching;
+        
+        var search = function () {
+            swapClasses(oldStyle, newStyle, that.container);
+            that.getFromFlickr(that.locate("searchBox").val());
+        };
+        
+        that.locate("searchButton").click(search);
+        that.locate("searchBox").fluid("activatable", search);
+    };
+    
     var bindEvents = function (that) {
         dataFetchComplete(that);
+        activateSearch(that);
     };
     
     var setup = function (that) {
@@ -87,6 +110,7 @@ var fliquor = fliquor || {};
         
         that.getFromFlickr = function (query) {
             var url = String(window.location).replace(".html", ".json") + "?" + query;
+            url = url.replace("#", "");
             ajaxCall(url, that.events.afterImagesReturnedFromFlickr.fire, that.events.imageFetchError);
         };
         
@@ -106,6 +130,8 @@ var fliquor = fliquor || {};
         },
         
         styles: {
+            searching: "searching",
+            displayResults: "rendering"
         },
         
         strings: {

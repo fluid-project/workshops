@@ -142,3 +142,22 @@ a {text-decoration:none;}
     display:block;
     font-size:.9em;
 }
+
+/********************************/
+/*swap screens*/
+
+.searching .fl-fliquor-start,
+.rendering .fl-fliquor-start,
+.fl-fliquor-searching,
+.results
+{
+    display: none;
+}
+
+.searching .fl-fliquor-searching,
+.rendering .results
+{
+    display: block;
+}
+
+

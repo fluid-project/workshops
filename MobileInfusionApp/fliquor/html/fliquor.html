@@ -17,11 +17,14 @@
         <link type="text/css" rel="stylesheet" href="../../infusion/framework/fss/css/fss-theme-slate.css" />
         <link type="text/css" rel="stylesheet" href="../../fliquor/css/fliquor.css" />
         
-        <script type="text/javascript" src="../../infusion/src/webapp/lib/jquery/core/js/jquery.js"></script>
-        <script type="text/javascript" src="../../infusion/src/webapp/lib/json/js/json2.js"></script>
-        <script type="text/javascript" src="../../infusion/src/webapp/framework/core/js/Fluid.js"></script>
-        <script type="text/javascript" src="../../infusion/src/webapp/framework/core/js/FluidDOMUtilities.js"></script>
-        <script type="text/javascript" src="../../infusion/src/webapp/framework/core/js/DataBinding.js"></script>
+        <script type="text/javascript" src="../../infusion/lib/jquery/core/js/jquery.js"></script>
+        <script type="text/javascript" src="../../infusion/lib/jquery/ui/js/ui.core.js"></script>
+        <script type="text/javascript" src="../../infusion/lib/jquery/plugins/delegate/js"></script>
+        <script type="text/javascript" src="../../infusion/framework/core/js/jquery.keyboard-a11y.js"></script>
+        <script type="text/javascript" src="../../infusion/lib/json/js/json2.js"></script>
+        <script type="text/javascript" src="../../infusion/framework/core/js/Fluid.js"></script>
+        <script type="text/javascript" src="../../infusion/framework/core/js/FluidDOMUtilities.js"></script>
+        <script type="text/javascript" src="../../infusion/framework/core/js/DataBinding.js"></script>
         <script type="text/javascript" src="../../fliquor/js/fliquor.js"></script>
         
     </head>
@@ -33,6 +36,12 @@
                     <span class="fl-button-inner">Search!</span>
                 </a>
             </div>
+        </div>
+        <div class="fl-fliquor-start">
+            Search for images
+        </div>
+        <div class="fl-fliquor-searching">
+            Searching...
         </div>
         <div class="fl-container-500 fl-centered results">
             <ol class="flc-fliquor-templateContainer fl-list-menu fl-list-thumbnails fl-thumbnails-expanded">                
@@ -49,8 +58,7 @@
             </ol>
         </div>
         <script type="text/javascript">
-//            var fliq = fliquor.imageViewer(".flc-fliquor");
-//            fliq.getFromFlickr("baseball");
+            var fliq = fliquor.imageViewer(".flc-fliquor");
         </script>
     </body>
 </html>
