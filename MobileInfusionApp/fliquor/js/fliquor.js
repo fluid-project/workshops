@@ -9,7 +9,7 @@
  https://source.fluidproject.org/svn/LICENSE.txt
  
  */
-/*global jQuery, fluid*/
+/*global window, jQuery, fluid*/
 
 fluid = fluid || {};
 var fliquor = fliquor || {};
@@ -34,7 +34,7 @@ var fliquor = fliquor || {};
     };
     
     var mapData = function (that, data) {
-        if(data.stat === "ok") {
+        if (data.stat === "ok") {
             var photos = data.photos.photo;
             return fluid.transform(photos, function (photo) {
                 return {
