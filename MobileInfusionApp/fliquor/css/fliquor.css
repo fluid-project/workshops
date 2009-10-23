@@ -170,6 +170,7 @@ a {text-decoration:none;}
     position:absolute;
     top:30px;
     width:100%;
+    z-index:10000;
 }
 
 .fl-fliquor-state-searching .fl-fliquor-start,
