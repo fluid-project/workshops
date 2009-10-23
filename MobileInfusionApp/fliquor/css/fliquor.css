@@ -5,9 +5,12 @@ ol li {
     list-style-type:none;
 }
 a {text-decoration:none;}
+.fl-container-500 {
+    position:relative;
+}
 .search-bar a {
     font-size:0.9em;
-    margin:7px 55px 0 0;
+    margin:7px 0 0 0;
 }
 .fl-theme-slate .results a {
     display:block;
@@ -17,7 +20,7 @@ a {text-decoration:none;}
 }
 .fl-theme-slate input.search {
     padding:10px;
-    width:335px;
+    width:390px;
 }
 .fl-theme-slate .results li {
     float:left;
@@ -145,17 +148,40 @@ a {text-decoration:none;}
 
 /********************************/
 /*swap screens*/
+.fl-fliquor-start {
+    -webkit-border-radius: 10px;
+    -moz-border-radius:10px;
+    margin:10px auto;
+    width:250px;
+    padding:20px;
+    color:#fff;
+    text-align:center;
+    font:normal 18px Arial, sans-serif;
+    background-color:rgba(0,0,0,0.5);
+}
+.fl-fliquor-searching {
+    -webkit-border-radius: 10px;
+    -moz-border-radius:10px;
+    padding:20px 0;
+    color:#fff;
+    text-align:center;
+    font:normal 18px Arial, sans-serif;
+    background:rgba(0,0,0,0.5) url(../images/spinner.gif) no-repeat 90% center;
+    position:absolute;
+    top:30px;
+    width:100%;
+}
 
-.searching .fl-fliquor-start,
-.rendering .fl-fliquor-start,
+.fl-fliquor-state-searching .fl-fliquor-start,
+.fl-fliquor-state-rendering .fl-fliquor-start,
 .fl-fliquor-searching,
 .results
 {
     display: none;
 }
 
-.searching .fl-fliquor-searching,
-.rendering .results
+.fl-fliquor-state-searching .fl-fliquor-searching,
+.fl-fliquor-state-rendering .results
 {
     display: block;
 }

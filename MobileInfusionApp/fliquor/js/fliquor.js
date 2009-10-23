@@ -126,12 +126,12 @@ var fliquor = fliquor || {};
             searchBox: ".flc-fliquor-search", 
             template: ".flc-fliquor-template",
             templateContainer: ".flc-fliquor-templateContainer",
-            templateTitle: ".title"
+            templateTitle: ".flc-fliquor-item-title"
         },
         
         styles: {
-            searching: "searching",
-            displayResults: "rendering"
+            searching: "fl-fliquor-state-searching",
+            displayResults: "fl-fliquor-state-rendering"
         },
         
         strings: {
