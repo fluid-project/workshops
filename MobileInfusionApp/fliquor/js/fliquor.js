@@ -25,12 +25,13 @@ var fliquor = fliquor || {};
 	    });
 	};
     
-    var storeTemplate = function (that) {
-        that.template = that.locate("template").clone();
-    };
-    
     var clearTemplate = function (that) {
         that.locate("templateContainer").html("");
+    };
+    
+    var storeTemplate = function (that) {
+        that.template = that.locate("template").clone();
+        clearTemplate(that);
     };
     
     var mapData = function (that, data) {

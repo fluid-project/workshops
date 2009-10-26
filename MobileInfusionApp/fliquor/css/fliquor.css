@@ -175,14 +175,12 @@ a {text-decoration:none;}
 
 .fl-fliquor-state-searching .fl-fliquor-start,
 .fl-fliquor-state-rendering .fl-fliquor-start,
-.fl-fliquor-searching,
-.results
+.fl-fliquor-searching
 {
     display: none;
 }
 
-.fl-fliquor-state-searching .fl-fliquor-searching,
-.fl-fliquor-state-rendering .results
+.fl-fliquor-state-searching .fl-fliquor-searching
 {
     display: block;
 }
