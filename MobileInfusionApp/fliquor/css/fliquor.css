@@ -7,6 +7,8 @@ ol li {
 a {text-decoration:none;}
 .fl-container-500 {
     position:relative;
+    overflow:auto;
+    min-height:450px;
 }
 .search-bar a {
     font-size:0.9em;
@@ -24,10 +26,14 @@ a {text-decoration:none;}
 }
 .fl-theme-slate .results li {
     float:left;
+    height:125px;
+    width:125px;
 }
 .fl-theme-slate .results .fl-icon {
-    width:128px;
-    height:128px;
+    width:auto;
+    height:auto;
+    max-height:113px;
+    max-width:113px;
     margin:0;
     border:1px solid #fff;
 }
@@ -148,28 +154,30 @@ a {text-decoration:none;}
 
 /********************************/
 /*swap screens*/
-.fl-fliquor-start {
-    -webkit-border-radius: 10px;
-    -moz-border-radius:10px;
-    margin:10px auto;
-    width:250px;
-    padding:20px;
+.fl-fliquor-start,
+.fl-fliquor-searching {
     color:#fff;
     text-align:center;
     font:normal 18px Arial, sans-serif;
     background-color:rgba(0,0,0,0.5);
 }
-.fl-fliquor-searching {
+.fl-fliquor-start {
     -webkit-border-radius: 10px;
     -moz-border-radius:10px;
-    padding:20px 0;
-    color:#fff;
-    text-align:center;
-    font:normal 18px Arial, sans-serif;
-    background:rgba(0,0,0,0.5) url(../images/spinner.gif) no-repeat 90% center;
+    margin:10px auto;
+    width:250px;
+    padding:20px;    
+}
+.fl-fliquor-searching {
+    background-image:url(../images/spinner.gif);
+    background-repeat: no-repeat;
+    background-position:center 225px;
+    padding:200px 0 0;
     position:absolute;
-    top:30px;
-    width:100%;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
     z-index:10000;
 }
 
