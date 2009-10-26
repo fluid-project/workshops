@@ -10,33 +10,28 @@ https://source.fluidproject.org/svn/LICENSE.txt
 */
 
 // Declare dependencies.
-/*global jQuery, fluid, fliquor*/
-
-fluid = fluid || {};
+/*global jQuery, fluid*/
 
 var fliquor = fliquor || {};
 
 (function ($) {
     
-    var flickrURL = "http://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&content_type=1&per_page=25&api_key=e65a1289edd23313ed5469f096e5196c&text=";
+    var flickrURL = "http://api.flickr.com/services/rest/" + 
+                    "?method=flickr.photos.search&format=json" + 
+                    "&nojsoncallback=1&content_type=1" + 
+                    "&per_page=25&api_key=e65a1289edd23313ed5469f096e5196c&text=";
     
-	var ajaxCall = function (url, success, error) {
+	var getWithAjax = function (url, errorCallback) {
+	    var data;
 	    $.ajax({
             url: url,
             dataType: "json",
-            asyn: false,
-            success: success,
-            error: error
-	    });
-	};
-    
-	var getWithAjax = function (url, error) {
-	    var data;
-	    var success = function (returnedData) {
-	        data = returnedData;
-	    };
-	    
-	    ajaxCall(url, success, error);
+            async: false,
+            success: function (returnedData) {
+                data = returnedData;
+            },
+            error: errorCallback
+        });
 	    
 	    return data;
 	};
@@ -46,15 +41,20 @@ var fliquor = fliquor || {};
         return getWithAjax(restURL, errorCallback);
     };
     
+    /**
+     * Creates a simple Kettle data feed that proxies data from Flickr to Fliquor's client-side code.
+     * This gets around the same origin policy in all browsers.
+     */
     fliquor.initDataFeed = function (config, app) {
-	    var browseDataHandler = function (env) {
-	        return [200, {"Content-Type": "text/plain"}, getData(env.env.QUERY_STRING)];
-	    };
-	
-	    var acceptor = fluid.engage.makeAcceptorForResource("fliquor", "json", browseDataHandler);
-	    fluid.engage.mountAcceptor(app, "demo", acceptor);
+	    var flickrProxy = fluid.engage.makeAcceptorForResource("fliquor", "json", function (env) {
+            return [200, {"Content-Type": "text/plain"}, getData(env.env.QUERY_STRING)];
+        });
+	    fluid.engage.mountAcceptor(app, "demo", flickrProxy);
     };
     
+    /**
+     * Registers a Kettle markup feed that servers up the Fliquor client-side HTML.
+     */
     fliquor.initMarkupFeed = function (config, app) {
         var handler = fluid.engage.mountRenderHandler({
             config: config,
