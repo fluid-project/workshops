@@ -43,13 +43,17 @@ var fliquor = fliquor || {};
     };
     
     var renderData = function (that, data) {
-        that.locate("templateContainer").empty();
+        that.locate("images").empty();
         $.each(data, function (index, object) {
-            var templateClone = that.template.clone();
-            templateClone.find("a").attr({href: object.flickrPage});
-            templateClone.find("img").attr({src: object.imageSource, title: object.imageTitle, alt: object.imageTitle});
-            templateClone.find(that.options.selectors.templateTitle).text(object.imageTitle);
-            that.locate("templateContainer").append(templateClone);
+            var renderedThumb = that.template.clone();
+            that.locate("thumbnailLink", renderedThumb).attr("href", object.flickrPage);
+            that.locate("thumbnailImage", renderedThumb).attr({
+                src: object.imageSource, 
+                title: object.imageTitle, 
+                alt: object.imageTitle
+            });
+            that.locate("thumbnailTitle", renderedThumb).text(object.imageTitle);
+            that.locate("images").append(renderedThumb);
         });
         that.events.afterRender.fire(that, data);
     };
@@ -59,34 +63,16 @@ var fliquor = fliquor || {};
         element.addClass(newClass);
     };
     
-    var dataFetchComplete = function (that) {
-        var searchStyle = that.options.styles.searching;
-        var displayStyle = that.options.styles.displayResults;
-        
-        var displayData = function (data) {
-            var mappedData = mapData(that, data);
-            renderData(that, mappedData);
-            swapClasses(searchStyle, displayStyle, that.container);
-        };
-        
-        that.events.afterImagesReturnedFromFlickr.addListener(displayData);
-    };
-    
     var activateSearch = function (that) {
-        var oldStyle = that.options.styles.displayResults;
-        var newStyle = that.options.styles.searching;
-        
-        var search = function () {
-            swapClasses(oldStyle, newStyle, that.container);
-            that.getFromFlickr(that.locate("searchBox").val());
-        };
-        
-        that.locate("searchButton").click(search);
-        that.locate("searchBox").fluid("activatable", search);
+        that.locate("searchBox").fluid("activatable", that.search);
+        that.locate("searchButton").click(function (evt) {
+            that.search();
+            return false;
+        });
     };
     
     var bindEvents = function (that) {
-        dataFetchComplete(that);
+        that.events.afterImagesReturnedFromFlickr.addListener(that.renderData);
         activateSearch(that);
     };
     
@@ -106,23 +92,41 @@ var fliquor = fliquor || {};
         
         that.getFromFlickr = function (query) {
             var url = String(window.location).replace(".html", ".json") + "?" + query;
-            url = url.replace("#", "");
             ajaxCall(url, that.events.afterImagesReturnedFromFlickr.fire, that.events.imageFetchError);
         };
         
+        that.search = function () {
+            var oldStyle = that.options.styles.displayResults,
+                newStyle = that.options.styles.searching;
+            swapClasses(oldStyle, newStyle, that.container);
+            that.getFromFlickr(that.locate("searchBox").val());
+        };
+        
+        that.renderData = function (data) {
+            var searchStyle = that.options.styles.searching,
+                displayStyle = that.options.styles.displayResults,
+                mappedData = mapData(that, data);
+                
+            renderData(that, mappedData);
+            swapClasses(searchStyle, displayStyle, that.container);
+        };
+
         setup(that);
         
         return that;
     };
     
     fluid.defaults("fliquor.imageViewer", {
-        
         selectors: {
             searchButton: ".flc-fliquor-searchButton",
             searchBox: ".flc-fliquor-search", 
             template: ".flc-fliquor-template",
-            templateContainer: ".flc-fliquor-templateContainer",
-            templateTitle: ".flc-fliquor-item-title"
+            images: ".flc-fliquor-images",
+            
+            // Relative to the thumbnail item.
+            thumbnailLink: "a",
+            thumbnailImage: "img",
+            thumbnailTitle: ".flc-fliquor-item-title"
         },
         
         styles: {
