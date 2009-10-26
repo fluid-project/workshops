@@ -49,7 +49,7 @@ var fliquor = fliquor || {};
 	    var flickrProxy = fluid.engage.makeAcceptorForResource("fliquor", "json", function (env) {
             return [200, {"Content-Type": "text/plain"}, getData(env.env.QUERY_STRING)];
         });
-	    fluid.engage.mountAcceptor(app, "demo", flickrProxy);
+	    fluid.engage.mountAcceptor(app, "fsoss", flickrProxy);
     };
     
     /**
@@ -59,7 +59,7 @@ var fliquor = fliquor || {};
         var handler = fluid.engage.mountRenderHandler({
             config: config,
             app: app,
-            target: "demo/",
+            target: "fsoss/",
             source: "html/",
             sourceMountRelative: "fliquor"
         });
