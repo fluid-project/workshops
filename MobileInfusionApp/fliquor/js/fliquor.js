@@ -25,13 +25,8 @@ var fliquor = fliquor || {};
 	    });
 	};
     
-    var clearTemplate = function (that) {
-        that.locate("templateContainer").html("");
-    };
-    
     var storeTemplate = function (that) {
-        that.template = that.locate("template").clone();
-        clearTemplate(that);
+        that.template = that.locate("template").remove();
     };
     
     var mapData = function (that, data) {
@@ -48,7 +43,7 @@ var fliquor = fliquor || {};
     };
     
     var renderData = function (that, data) {
-        clearTemplate(that);
+        that.locate("templateContainer").empty();
         $.each(data, function (index, object) {
             var templateClone = that.template.clone();
             templateClone.find("a").attr({href: object.flickrPage});
