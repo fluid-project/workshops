@@ -15,9 +15,8 @@ a {text-decoration:none;}
     margin:7px 0 0 0;
 }
 .fl-theme-slate .results a {
-    display:block;
     position:relative;
-    color:#333 !important;    
+    color:#333 !important;
     overflow:auto;    
 }
 .fl-theme-slate input.search {
@@ -28,6 +27,7 @@ a {text-decoration:none;}
     float:left;
     height:125px;
     width:125px;
+    background:transparent url(../images/loading_bg.png) no-repeat center center;
 }
 .fl-theme-slate .results .fl-icon {
     width:auto;
@@ -35,7 +35,7 @@ a {text-decoration:none;}
     max-height:113px;
     max-width:113px;
     margin:0;
-    border:1px solid #fff;
+    border:1px solid #fff;    
 }
 .fl-theme-slate .results .fl-link-summary {
     font-size:.75em;
