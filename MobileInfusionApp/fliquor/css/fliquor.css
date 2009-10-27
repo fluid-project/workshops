@@ -10,7 +10,7 @@ a {text-decoration:none;}
 }
 .fl-container-500 {
     position:relative;
-    /*overflow:auto;*/
+    overflow:auto;
     min-height:450px;
 }
 .search-bar a {
@@ -21,8 +21,7 @@ a {text-decoration:none;}
     width:500px;
 }
 .fl-theme-slate .results a {    
-    color:#333 !important;
-    overflow:auto;
+    color:#333 !important;    
     text-align:center;
     display:table-cell;
     vertical-align:middle;
@@ -54,10 +53,11 @@ a {text-decoration:none;}
     display:none;
 }
 .fl-theme-slate .results .fl-fliquor-item-title {
-    position:absolute;
+    /*position:absolute;
     bottom:5px;
     left:5px;
-    right:5px;
+    right:5px;*/
+    padding:3px 5px;
     background-color:#000;
     border:1px solid #fff;
     text-align:center;
