@@ -53,19 +53,18 @@ a {text-decoration:none;}
     display:none;
 }
 .fl-theme-slate .results .fl-fliquor-item-title {
-    /*position:absolute;
-    bottom:5px;
-    left:5px;
-    right:5px;*/
-    padding:3px 5px;
+    overflow:hidden;
+    max-width:100px;
+    margin:auto;
     background-color:#000;
     border:1px solid #fff;
+    border-bottom:none;
     text-align:center;
     color:#fff;
     display:none;    
 }
 .fl-theme-slate .results a:hover .fl-fliquor-item-title {
-    display: inline;
+    display: block;
 }
 
 .fl-theme-slate .fl-list-menu,
