@@ -58,11 +58,6 @@ var fliquor = fliquor || {};
         that.events.afterRender.fire(that, data);
     };
     
-    var swapClasses = function (oldClass, newClass, element) {
-        element.removeClass(oldClass);
-        element.addClass(newClass);
-    };
-    
     var activateSearch = function (that) {
         that.locate("searchBox").fluid("activatable", that.search);
         that.locate("searchButton").click(function (evt) {
@@ -96,19 +91,16 @@ var fliquor = fliquor || {};
         };
         
         that.search = function () {
-            var oldStyle = that.options.styles.displayResults,
-                newStyle = that.options.styles.searching;
-            swapClasses(oldStyle, newStyle, that.container);
+            that.locate("welcomeMessage").hide();
+            that.locate("searchingMessage").show();
             that.getFromFlickr(that.locate("searchBox").val());
         };
         
         that.renderData = function (data) {
-            var searchStyle = that.options.styles.searching,
-                displayStyle = that.options.styles.displayResults,
-                mappedData = mapData(that, data);
+            var mappedData = mapData(that, data);
                 
             renderData(that, mappedData);
-            swapClasses(searchStyle, displayStyle, that.container);
+            that.locate("searchingMessage").hide();
         };
 
         setup(that);
@@ -122,6 +114,8 @@ var fliquor = fliquor || {};
             searchBox: ".flc-fliquor-search", 
             template: ".flc-fliquor-template",
             images: ".flc-fliquor-images",
+            welcomeMessage: ".flc-fliquor-welcomeMessage",
+            searchingMessage: ".flc-fliquor-searchingMessage",
             
             // Relative to the thumbnail item.
             thumbnailLink: "a",
@@ -130,8 +124,7 @@ var fliquor = fliquor || {};
         },
         
         styles: {
-            searching: "fl-fliquor-state-searching",
-            displayResults: "fl-fliquor-state-rendering"
+            
         },
         
         strings: {
