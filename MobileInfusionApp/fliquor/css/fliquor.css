@@ -55,6 +55,7 @@ a {text-decoration:none;}
 .fl-theme-slate .results .fl-fliquor-item-title {
     overflow:hidden;
     max-width:100px;
+    height:18px;
     margin:auto;
     background-color:#000;
     border:1px solid #fff;
