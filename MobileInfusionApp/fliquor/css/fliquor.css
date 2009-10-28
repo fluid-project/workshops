@@ -8,7 +8,7 @@ a {text-decoration:none;}
 .fl-icon {
     background:transparent url(../images/loading_bg.png) no-repeat center center;
 }
-.fl-container-500 {
+.fl-container-800 {
     position:relative;
     overflow:auto;
     min-height:450px;
@@ -33,8 +33,8 @@ a {text-decoration:none;}
 .fl-theme-slate .results li {
     float:left;
     display:table;
-    height:125px;
-    width:125px;
+    height:200px;
+    width:200px;
     background:transparent url(../images/loading_bg.png) no-repeat center center;
     position:relative;
 }
@@ -42,8 +42,8 @@ a {text-decoration:none;}
     display:inline;
     width:auto;
     height:auto;
-    max-height:113px;
-    max-width:113px;
+    max-height:188px;
+    max-width:188px;
     margin:0 auto;
     border:1px solid #fff;    
 }
@@ -53,21 +53,23 @@ a {text-decoration:none;}
     display:none;
 }
 .fl-theme-slate .results .fl-fliquor-item-title {
-    overflow:hidden;
-    max-width:100px;
-    height:18px;
-    margin:auto;
     background-color:#000;
     border:1px solid #fff;
-    border-bottom:none;
     text-align:center;
     color:#fff;
-    display:none;    
+    display:none; 
+    position:absolute;
+    left:0px;
+    bottom:0;
+    width:100%;  
 }
 .fl-theme-slate .results a:hover .fl-fliquor-item-title {
     display: block;
 }
-
+.fl-theme-slate .wrapper {
+    position:relative;
+    display:block;
+}
 .fl-theme-slate .fl-list-menu,
 .fl-theme-slate .fl-list-menu li {border:none;}
 
