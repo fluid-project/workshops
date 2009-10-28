@@ -188,7 +188,7 @@ var fliquor = fliquor || {};
         },
         
         strings: {
-            imageURL: "http://farm%farm.static.flickr.com/%server/%id_%secret_t.jpg",
+            imageURL: "http://farm%farm.static.flickr.com/%server/%id_%secret_m.jpg",
             userPage: "http://www.flickr.com/photos/%owner/%id"
         },
         
