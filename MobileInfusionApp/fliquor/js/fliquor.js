@@ -168,6 +168,11 @@ var fliquor = fliquor || {};
         return that;
     };
     
+    /**
+     * Register all the component's defaults with the framework.
+     * When Fliquor is instantiated, a DOM Binder will automatically be created and bound to the selectors
+     * specified in the options. Events will also be automatically created for you.
+     */
     fluid.defaults("fliquor.imageViewer", {
         selectors: {
             searchButton: ".flc-fliquor-searchButton",
@@ -181,10 +186,6 @@ var fliquor = fliquor || {};
             thumbnailLink: "a",
             thumbnailImage: "img",
             thumbnailTitle: ".flc-fliquor-item-title"
-        },
-        
-        styles: {
-            
         },
         
         strings: {
