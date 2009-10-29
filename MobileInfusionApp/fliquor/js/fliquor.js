@@ -107,6 +107,10 @@ var fliquor = fliquor || {};
         activateSearch(that);
     };
     
+    var addAria = function (that) {
+        that.locate("searchButton").attr("role", "button");
+    };
+    
     /**
      * calls the various functions that need to be run when the app starts.
      * 
@@ -115,6 +119,7 @@ var fliquor = fliquor || {};
     var setup = function (that) {
         bindEvents(that);
         storeTemplate(that);
+        addAria(that);
     };
     
     /**
