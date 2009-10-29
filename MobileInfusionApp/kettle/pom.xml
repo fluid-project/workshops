@@ -5,7 +5,7 @@
                       http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>fluid-engage</artifactId>
+  <artifactId>fliquor-server</artifactId>
   <groupId>org.fluidproject</groupId>
   <version>0.1-SNAPSHOT</version>
 
@@ -16,7 +16,7 @@
   <inceptionYear>2009</inceptionYear>
   <packaging>war</packaging>
   <description>
-    A set of test components for evaluating conversion and rendering strategies
+    The server-side module for Fluid's Fliquor Infusion mobile sample code.
   </description>
 
   <repositories>
