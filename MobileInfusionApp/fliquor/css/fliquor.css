@@ -17,20 +17,20 @@ a {text-decoration:none;}
     font-size:0.9em;
     margin:7px 0 0 0;
 }
-.fl-theme-slate .fl-navbar {    
+.fl-theme-coal .fl-navbar {    
     width:500px;
 }
-.fl-theme-slate .results a {    
+.fl-theme-coal .results a {    
     color:#333 !important;    
     text-align:center;
     display:table-cell;
     vertical-align:middle;
 }
-.fl-theme-slate input.search {
+.fl-theme-coal input.search {
     padding:10px;
     width:390px;
 }
-.fl-theme-slate .results li {
+.fl-theme-coal .results li {
     float:left;
     display:table;
     height:200px;
@@ -38,7 +38,7 @@ a {text-decoration:none;}
     background:transparent url(../images/loading_bg.png) no-repeat center center;
     position:relative;
 }
-.fl-theme-slate .results .fl-icon {
+.fl-theme-coal .results .fl-icon {
     display:inline;
     width:auto;
     height:auto;
@@ -47,12 +47,12 @@ a {text-decoration:none;}
     margin:0 auto;
     border:1px solid #fff;    
 }
-.fl-theme-slate .results .fl-link-summary {
+.fl-theme-coal .results .fl-link-summary {
     font-size:.75em;
     color:#666;
     display:none;
 }
-.fl-theme-slate .results .fl-fliquor-item-title {
+.fl-theme-coal .results .fl-fliquor-item-title {
     background-color:#000;
     border:1px solid #fff;
     text-align:center;
@@ -63,15 +63,15 @@ a {text-decoration:none;}
     bottom:0;
     width:100%;  
 }
-.fl-theme-slate .results a:hover .fl-fliquor-item-title {
+.fl-theme-coal .results a:hover .fl-fliquor-item-title {
     display: block;
 }
-.fl-theme-slate .wrapper {
+.fl-theme-coal .wrapper {
     position:relative;
     display:block;
 }
-.fl-theme-slate .fl-list-menu,
-.fl-theme-slate .fl-list-menu li {border:none;}
+.fl-theme-coal .fl-list-menu,
+.fl-theme-coal .fl-list-menu li {border:none;}
 
 /********************************/
 /* custom mods */
