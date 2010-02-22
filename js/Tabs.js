@@ -1,4 +1,4 @@
-/*global jQuery, fluid*/
+/*global jQuery*/
 
 var demo = demo || {};
 
@@ -65,6 +65,9 @@ var demo = demo || {};
     };
     
     var addAria = function (that) {
+        // Give the page an application role to denote desktop-style keyboard navigation.
+        $("body").attr("role", "application");
+        
         // Identify the container as a list of tabs.
         that.tabContainer.attr("role", "tablist");
         

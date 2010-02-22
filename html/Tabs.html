@@ -4,12 +4,12 @@
  	<link rel="stylesheet" href="../css/Tabs.css" type="text/css" media="screen" charset="utf-8" />
     
     <!-- jQuery itself -->
-    <script type="text/javascript" src="../../fluid-all/infusion/src/webapp/lib/jquery/core/js/jquery.js"></script>
+    <script type="text/javascript" src="../lib/jquery-1.3.2.min.js"></script>
     
     <!-- Infusion Keyboard Accessibility plugin & its dependencies -->
-    <script type="text/javascript" src="../../fluid-all/infusion/src/webapp/lib/jquery/ui/js/ui.core.js"></script>
-    <script type="text/javascript" src="../../fluid-all/infusion/src/webapp/lib/jquery/plugins/delegate/js/jquery.delegate.js"></script>
-    <script type="text/javascript" src="../../fluid-all/infusion/src/webapp/framework/core/js/jquery.keyboard-a11y.js"></script>
+    <script type="text/javascript" src="../lib/ui.core.js"></script>
+    <script type="text/javascript" src="../lib/jquery.delegate.js"></script>
+    <script type="text/javascript" src="../lib/jquery.keyboard-a11y.js"></script>
     
     <!-- Tab demo -->
     <script type="text/javascript" src="../js/Tabs.js"></script>
@@ -31,6 +31,7 @@
     
         <!-- The panels for each tab are just an ordinary set of divs, but the markup is flexible.-->
         <div id="panels">
+          <a name="catsPanel">
           <div id="catsPanel">
             <p>
                 Cats <a href="http://icanhascheezburger.com/2007/01/11/i-can-has-cheezburger/">meow</a>.
@@ -44,6 +45,7 @@
             </p>
             
           </div>
+          <a name="dogsPanel">
           <div id="dogsPanel">
             <p>
                 Dogs <a href="http://thebark.com/">bark</a>.
@@ -55,6 +57,8 @@
             </p>
             
           </div>
+          
+          <a name="hamstersPanel">
           <div id="hamstersPanel">
             <p>
                 Hamsters <a href="http://en.wikipedia.org/wiki/Hamster_wheel">wheel</a>.
@@ -68,6 +72,8 @@
                 stuff full of food to be stored, brought back to the colony or to be eaten later.
             </p>
           </div>
+          
+          <a name="alligatorsPanel">
           <div id="alligatorsPanel">
             <p>
                 Alligators <a href="http://www.drinknation.com/drink/Alligator-Bite">bite</a>.
