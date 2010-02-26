@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd">
+
+	<!-- 
+	 | View resolvers, look for a named view bean before going to JSP resolution
+	 +-->
+	<bean class="org.springframework.web.servlet.view.XmlViewResolver"
+		p:order="0" p:location="/WEB-INF/context/views.xml"/>
+	
+	<bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:order="10" p:cache="true" p:viewClass="org.springframework.web.servlet.view.JstlView"
+		p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/>
+
+</beans>
