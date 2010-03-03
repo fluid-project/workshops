@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                      http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <properties>
+    <deploy.webappname>fluid-twitter</deploy.webappname>
+  </properties>
+  <version>1.0</version>
+
+  <artifactId>fluid-twitter</artifactId>
+  <name>Fluid Twitter Server component</name>
+  <groupId>org.fluidproject</groupId>
+
+  <organization>
+    <name>Fluid Project</name>
+    <url>http://fluidproject.org</url>
+  </organization>
+  <inceptionYear>2009</inceptionYear>
+  <packaging>war</packaging>
+  
+  <pluginRepositories>
+      <pluginRepository>
+          <id>caret</id>
+          <url>http://www2.caret.cam.ac.uk/maven2</url>
+      </pluginRepository>
+  </pluginRepositories>
+  
+  <dependencies>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.3</version>
+      <type>jar</type>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-rsf-plugin</artifactId>
+        <version>1.0</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>
