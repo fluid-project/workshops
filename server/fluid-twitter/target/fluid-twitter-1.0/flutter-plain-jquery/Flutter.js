@@ -13,9 +13,7 @@ var fluid = fluid || {};
     }; 
         
     var makeFriendsActivatable = function (that, friendjQ) {
-        friendjQ.fluid("activatable", function(evt){
-            that.selectFriend(evt.target);
-        });
+        friendjQ.fluid("activatable", that.selectFriend);
     };
     
     var renderFriend = function (that, friend) {
@@ -124,8 +122,8 @@ var fluid = fluid || {};
         });
         
         // Add a mouse click handler to each of the friend elements.
-        friendsList.delegate("li", "click", function(event){
-            that.selectFriend(this);
+        $("li", that.friendsList).live("click", function(event){
+            that.selectFriend(event.target);
         });
     };
     

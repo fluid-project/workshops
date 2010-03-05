@@ -6,18 +6,6 @@ var fluid = fluid || {};
         return friendElement.attr("id");
     };
     
-    var selectCurrentFriend = function (that) {
-        // Select a friend by default: either whatever is selected in the markup, or the first in the list.
-        var defaultFriend = that.selectedFriend || that.friendsList.children(":first");
-        that.selectFriend(defaultFriend);
-    }; 
-        
-    var makeFriendsActivatable = function (that, friendjQ) {
-        friendjQ.fluid("activatable", function(evt){
-            that.selectFriend(evt.target);
-        });
-    };
-    
     var renderFriend = function (that, friend) {
         // Grab the template element and clone it.
         var friendElement = that.friendTemplate.clone();
@@ -30,10 +18,6 @@ var fluid = fluid || {};
         
         // Render its name.
         friendElement.append(friend.name);
-        
-        // Make it accessible.
-        addARIAToFriends(friendElement);
-        makeFriendsActivatable(that, friendElement);
         
         // Add it to the friends list. It will be hidden to start.
         that.friendsList.append(friendElement);
@@ -75,12 +59,12 @@ var fluid = fluid || {};
     var showTweetsForFriend = function (that, activatedFriend) {
         var id = idForFriendElement(that, activatedFriend);
         if (id) { 
-            that.twitter.fetchTweets(id, that.renderTweetsList, that.showTweetsListError);
+            that.twitter.getTweets(id, that.renderTweetsList, that.showTweetsListError);
         }
     };
     
     var showFriends = function (that) {
-        that.twitter.fetchFriends(that.renderFriendsList, that.showFriendsListError);    
+        that.twitter.getFriends(that.renderFriendsList, that.showFriendsListError);    
     };
     
     var makeListSelectable = function (list) {
@@ -99,8 +83,7 @@ var fluid = fluid || {};
         makeListSelectable(that.tweetsList);
         
         // Add an activation handler for the Enter key.
-        makeFriendsActivatable(that, that.friendsList.find("li"));
-        
+        that.friendsList.find("li").fluid("activatable", that.selectFriend);
         return {
             selectableFriends: that.friendsList.that(),
             selectableTweets: that.tweetsList.that()
@@ -124,16 +107,16 @@ var fluid = fluid || {};
         });
         
         // Add a mouse click handler to each of the friend elements.
-        friendsList.delegate("li", "click", function(event){
-            that.selectFriend(this);
+        $("li", that.friendsList).live("click", function(event){
+            that.selectFriend(event.target);
         });
     };
     
     var bindSettingsPanelHandlers = function (that) {
        that.settingsPanel.find("button").click(function (event) {
            // Pull the data out of the form and push into into our Twitter object.
-           that.twitter.username = $("#username", that.settingsPanel).val();
-           that.twitter.password = $("#password", that.settingsPanel).val();
+           that.twitter.options.username = $("#username", that.settingsPanel).val();
+           that.twitter.options.password = $("#password", that.settingsPanel).val();
            
            // Show the main panel again.
            that.showMainPanel();
@@ -145,24 +128,23 @@ var fluid = fluid || {};
     };
     
     var bindTabHandlers = function (that) {
-        var selectTab = function (selectedTab, event) {
-            that.tabs.children().removeClass("fl-activeTab");
-            selectedTab.addClass("fl-activeTab");
-            event.preventDefault();
-        };
+        // Bind a click handler to the tab container to handle tab switching.
+        var tabChildren = that.tabs.children();
+        tabChildren.click(function (event) {
+            tabChildren.removeClass(".fl-activeTab");
+            $(event.target).addClass(".fl-activeTab");
+        });
         
         // Bind a click handler to the Friends tab.
-        var friendsTab = that.tabs.find("#friends-tab");
-        friendsTab.click(function(event) {
-            selectTab(friendsTab, event);
+        that.tabs.find("#friends-tab").click(function(event) {
             that.showMainPanel();
+            event.preventDefault();
         });
         
         // And one to the Settings tab.
-        var settingsTab = that.tabs.find("#settings-tab");
-        settingsTab.click(function (event) {
-            selectTab(settingsTab, event);
+        that.tabs.find("#settings-tab").click(function (event) {
             that.showSettingsPanel();
+            event.preventDefault();
         });
     };
     
@@ -173,8 +155,8 @@ var fluid = fluid || {};
         return addKeyboardNavigation(that);
     };
     
-    var addARIAToFriends = function (friendsjQ) {
-        friendsjQ.attr("role", "tab");
+    var addARIATabRole = function (tabs) {
+        tabs.attr("role", "tab");
     };
     
     var addARIA = function (that) {
@@ -182,7 +164,7 @@ var fluid = fluid || {};
         that.friendsList.attr("role", "tablist");
         
         // Give each friend the "tab" role.
-        addARIAToFriends(that.friendsList.children());
+        addARIATabRole(that.friendsList.children());
         
         // Give the tweets panel an ARIA "panel" role.
         that.tweetsList.attr("role", "panel");
@@ -212,9 +194,9 @@ var fluid = fluid || {};
         // Bind event handlers and other dynamic behaviour.
         that.selectables = bindEventHandlers(that);
        
-        // Dig out the active element from the markup and select it.
-        that.selectedFriend = $(".flutter-active", that.friendsList);
-        selectCurrentFriend(that);
+        // Select a friend by default: either whatever is selected in the markup, or the first in the list.
+        var defaultFriend = $(".flutter-active", that.friendsList) || that.friendsList.children(":first");
+        that.selectFriend(defaultFriend);
         
         addARIA(that);
         
@@ -238,22 +220,18 @@ var fluid = fluid || {};
             // Wrap the element in a jQuery, since all event handlers pass pure DOM elements.
             friendElement = $(friendElement);
             
-            // Toggle off state for any friend that was previously selected.
-            var previouslySelectedFriend = that.selectedFriend;
-            if (previouslySelectedFriend) {
-                previouslySelectedFriend.removeClass("flutter-active");
-                previouslySelectedFriend.attr("aria-selected", false);
+            // Add a class to give the style the friend as active.
+            friendElement.addClass("flutter-active");
+            if (that.selectedFriend) {
+                that.selectedFriend.removeClass("flutter-active");
             }
             that.selectedFriend = friendElement;
-
-            // Style it as active
-            that.selectedFriend.addClass("flutter-active");
             
             // Mark the tab with the ARIA "selected" state.
             that.selectedFriend.attr("aria-selected", true);
             
             // Use the ARIA "labelledby" property to mark the selected friend as the label for the tweets panel.
-            that.tweetsList.attr("aria-labelledby", friendElement.attr("id"));
+            that.tweetsList.attr("aria-labelledby", that.selectedFriend.id);
         
             // Show the list of tweets for this friend.
             showTweetsForFriend(that, friendElement);
@@ -283,11 +261,12 @@ var fluid = fluid || {};
             });
             
             // Make sure all the new stuff in the list is selectable.
-            that.selectables.selectableFriends.refresh();
+            that.friendsList.that().refresh();
+            
+            // Still need to add activation and ARIA roles to each friend.
             
             // Finally, select the first friend.
-            that.selectedFriend = null;
-            selectCurrentFriend(that);
+            that.friendsList.children().eq(0).click();
         };
         
         /**

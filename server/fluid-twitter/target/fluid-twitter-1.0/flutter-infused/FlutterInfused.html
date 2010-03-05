@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	    <title>Flutter Infused</title>
+        <link rel="stylesheet" type="text/css" href="../shared/css/fss/css/fss-reset.css" />
+        <link rel="stylesheet" type="text/css" href="../shared/css/fss/css/fss-layout.css" />
+        <link rel="stylesheet" type="text/css" href="../shared/css/fss/css/fss-text.css" />
+        <link rel="stylesheet" type="text/css" href="../shared/css/fss/css/fss-theme-rust.css" />
+        <link rel="stylesheet" type="text/css" href="../shared/css/Flutter.css" />
+        
+        <!-- Framework Code -->
+        <script type="text/javascript" src="../shared/js/infusion/MyInfusion.js"></script>
+        
+        <!-- Our code -->
+        <script type="text/javascript" src="../shared/js/Twitter.js"></script>
+        <script type="text/javascript" src="FlutterInfused.js"></script>
+        <script type="text/javascript" src="FriendsView.js"></script>
+        <script type="text/javascript" src="TweetsView.js"></script>
+        <script type="text/javascript" src="SettingsView.js"></script>
+        <script type="text/javascript" src="StatusView.js"></script>
+        <script type="text/javascript" src="../shared/js/SettingsDialog.js"></script>
+	</head>
+    
+    <!-- Main panel for the Twitter client interface -->  
+	<body class="fl-container-600 fl-centered fl-theme-rust">
+        <div class="fl-widget flutter-main">
+            
+            <!-- Widget title bar -->
+            <div class="fl-widget-titlebar">
+                <h1>Flutter</h1>
+            </div>
+            
+            <div class="fl-widget-content">
+                <!-- Main friends & teets panel -->
+                <div class="flutter-main-panel">
+                    <!-- My Status panel -->
+                    <div class="fl-fix flutter-status-panel">
+                        <p class="fl-container-100 fl-force-left fl-text-align-center flutter-avatar">
+                            <img src="http://s3.amazonaws.com/twitter_production/profile_images/74256309/3136992916_06cd1aba7e_o_normal.jpg" 
+                                 alt="Colin's user picture" />
+                            <span id="name" class="flutter-name">Colin Clark</span>
+                        </p>
+                       
+                        <form>
+                            <label for="status">My status:</label><textarea id="status" class=".flutter-status-edit"></textarea>
+                            <p class="fl-font-size-70 flutter-hidden flutter-status-update-message">
+                                Your status was successfully updated!
+                            </p>
+                        </form>
+                    </div>
+                    
+                    <!-- Friends and Tweets two-column panel -->
+                    <div class="fl-centered flutter-friends-statuses">
+                        <!-- Friends column -->
+                        <ul class="fl-listmenu fl-container-200 fl-force-left flutter-friends">
+                            <li id="19539154">
+                                <img src="http://s3.amazonaws.com/twitter_production/profile_images/73280570/Darcie_Clark_0375_bigger.jpg"
+                                     alt="Darcie's user picture" />
+                                 Darcie Clark
+                             </li>
+                            <li id="752673"class="flutter-active">
+                                <img src="http://s3.amazonaws.com/twitter_production/profile_images/74432725/john.73_normal.png" 
+                                     alt="John's user picture"/>
+                                John Resig
+                            </li>
+                            <li id="5915782">
+                                <img src="http://s3.amazonaws.com/twitter_production/profile_images/28661132/Picture_2_normal.png"
+                                     alt="Jess' user picture" />
+                                 Jess Mitchell</li>
+                            <li id="17868497">
+                                <img src="http://s3.amazonaws.com/twitter_production/profile_images/66327737/Picture_4_normal.png"
+                                     alt="Filament's user picture" />
+                                Filament Group
+                            </li>
+                            <li id="12368532">
+                                <img src="http://s3.amazonaws.com/twitter_production/profile_images/44771622/RichardWorth_48x48_normal.jpg" 
+                                     alt="Richard's user picture" />
+                                Richard D. Worth
+                            </li>
+                            
+                             <li class="flutter-hidden flutter-friend-template">
+                                <img src="urlGoesHere"
+                                     alt="altTextGoesHere" />
+                             </li>
+                        </ul>
+                        
+                        <!-- Tweets column -->
+                        <ul class="flutter-tweets">
+                            <li>Microsoft Research just published a paper on implementing a browser like an Operating System: http://bit.ly/hXQOl</li>
+                            <li>I'm still watching Heroes even though I've lost all reason to care. Really happy they played Talking Heads in the last episode.</li>
+                            <li>Cinematic Titanic was awesome - they riffed 'Dynamite Brothers' (http://bit.ly/4wl8Q) and it was awfully perfect.</li>
+                            <li>I made some delicious french toast and linguica for breakfast. Yay for Saturdays!</li>
+                            <li class="flutter-tweet-template flutter-hidden">Status goes here</li>
+                        </ul>        
+                    </div>     
+                </div>
+                
+                <!-- Settings panel -->                               
+                <div class="flutter-hidden flutter-settings-panel">
+                    <div class="fl-container-400 fl-centered">
+                    <h2>Your Twitter Settings</h2>
+                    <form>
+                        <ul class="fl-controls-right">
+                            <li>
+                                <label for="username" class="fl-label">Twitter user name:</label>
+                                <input id="username" class="flutter-username-edit" type="text" />
+                            </li>
+                            <li>
+                                <label for="password" class="fl-label">Password: </label>
+                                <input id="password" class="flutter-password-edit" type="password" />
+                            </li>
+                        </ul>
+                        
+                        <div class="ui-dialog-buttonpane">
+                            <button class="fl-centered">Save &amp; Continue</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            
+                <!-- Tabs -->
+                <ul class="fl-tabs flutter-panel-tabs">
+                    <li class="fl-activeTab flutter-friends-tab"><a href="#">Friends</a></li>
+                    <li class="flutter-settings-tab"><a href="#">Settings</a></li>
+                </ul>
+            </div>
+            
+            <!-- Error dialog -->
+            <div class="flutter-hidden flutter-error-dialog" title="Can't Connect to Twitter">
+                We couldn't get your friends list from Twitter. If this is your first time using Flutter,
+                choose "Settings" to set up your username and password.
+            </div>
+        </div>
+	</body>
+</html>
