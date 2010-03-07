@@ -79,6 +79,10 @@ var fluid = fluid || {};
         }
     };
     
+    var showUser = function (that) {
+        that.twitter.fetchUser(that.renderUser, that.showFriendsListError);
+    };
+    
     var showFriends = function (that) {
         that.twitter.fetchFriends(that.renderFriendsList, that.showFriendsListError);    
     };
@@ -268,6 +272,11 @@ var fluid = fluid || {};
             that.twitter.postStatus(statusMessage, that.showStatusUpdateSuccess, that.showStatusUpdateError);
         };
         
+        that.renderUser = function (userData) {
+            jQuery(".flutter-name").text(userData.name);
+            jQuery(".flutter-image").attr("src", userData.profile_image_url);
+        };
+        
         /**
          * Renders the list of friends with data from Twitter.
          * 
@@ -316,7 +325,8 @@ var fluid = fluid || {};
                 that.settingsPanel.addClass("flutter-hidden");
                 that.mainPanel.removeClass("flutter-hidden");
             }
-
+            
+            showUser(that);
             showFriends(that);
         };
         
@@ -388,7 +398,7 @@ var fluid = fluid || {};
     
     $(document).ready(function () {
         var options = {
-            serverUrl: filesystemServer? "sample-data" : liveServerUrl,
+            serverUrl: filesystemServer? "sample-data/" : liveServerUrl,
             userUrlFactory: filesystemServer? localUserUrlFactory: null
         };
         fluid.flutter(options);

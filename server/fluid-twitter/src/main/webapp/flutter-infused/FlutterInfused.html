@@ -18,7 +18,7 @@
         <script type="text/javascript" src="../shared/js/jquery/jquery.ui.draggable.js"></script>
         <script type="text/javascript" src="../shared/js/jquery/jquery.ui.dialog.js"></script>
         
-        <!-- Fluid keyboard accessibility lugin -->
+        <!-- Fluid keyboard accessibility plugin -->
         <script type="text/javascript" src="../shared/js/infusion/jquery.keyboard-a11y.js"></script>
         
         <!-- Framework Code -->
@@ -49,13 +49,12 @@
                     <!-- My Status panel -->
                     <div class="fl-fix flutter-status-panel">
                         <p class="fl-container-100 fl-force-left fl-text-align-center flutter-avatar">
-                            <img src="http://s3.amazonaws.com/twitter_production/profile_images/74256309/3136992916_06cd1aba7e_o_normal.jpg" 
-                                 alt="Colin's user picture" />
-                            <span id="name" class="flutter-name">Colin Clark</span>
+                            <img alt="Your picture" class="flutter-user-image"/>
+                            <span class="flutter-user-name">You</span>
                         </p>
                        
                         <form>
-                            <label for="status">My status:</label><textarea id="status" class=".flutter-status-edit"></textarea>
+                            <label for="status">My status:</label><textarea id="status" class="flutter-status-edit"></textarea>
                             <p class="fl-font-size-70 flutter-hidden flutter-status-update-message">
                                 Your status was successfully updated!
                             </p>
@@ -66,31 +65,6 @@
                     <div class="fl-centered flutter-friends-statuses">
                         <!-- Friends column -->
                         <ul class="fl-listmenu fl-container-200 fl-force-left flutter-friends">
-                            <li id="19539154">
-                                <img src="http://s3.amazonaws.com/twitter_production/profile_images/73280570/Darcie_Clark_0375_bigger.jpg"
-                                     alt="Darcie's user picture" />
-                                 Darcie Clark
-                             </li>
-                            <li id="752673"class="flutter-active">
-                                <img src="http://s3.amazonaws.com/twitter_production/profile_images/74432725/john.73_normal.png" 
-                                     alt="John's user picture"/>
-                                John Resig
-                            </li>
-                            <li id="5915782">
-                                <img src="http://s3.amazonaws.com/twitter_production/profile_images/28661132/Picture_2_normal.png"
-                                     alt="Jess' user picture" />
-                                 Jess Mitchell</li>
-                            <li id="17868497">
-                                <img src="http://s3.amazonaws.com/twitter_production/profile_images/66327737/Picture_4_normal.png"
-                                     alt="Filament's user picture" />
-                                Filament Group
-                            </li>
-                            <li id="12368532">
-                                <img src="http://s3.amazonaws.com/twitter_production/profile_images/44771622/RichardWorth_48x48_normal.jpg" 
-                                     alt="Richard's user picture" />
-                                Richard D. Worth
-                            </li>
-                            
                              <li class="flutter-hidden flutter-friend-template">
                                 <img src="urlGoesHere"
                                      alt="altTextGoesHere" />
@@ -99,10 +73,6 @@
                         
                         <!-- Tweets column -->
                         <ul class="flutter-tweets">
-                            <li>Microsoft Research just published a paper on implementing a browser like an Operating System: http://bit.ly/hXQOl</li>
-                            <li>I'm still watching Heroes even though I've lost all reason to care. Really happy they played Talking Heads in the last episode.</li>
-                            <li>Cinematic Titanic was awesome - they riffed 'Dynamite Brothers' (http://bit.ly/4wl8Q) and it was awfully perfect.</li>
-                            <li>I made some delicious french toast and linguica for breakfast. Yay for Saturdays!</li>
                             <li class="flutter-tweet-template flutter-hidden">Status goes here</li>
                         </ul>        
                     </div>     

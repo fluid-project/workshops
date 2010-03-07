@@ -44,9 +44,8 @@
                     <!-- My Status panel -->
                     <div class="fl-fix flutter-status-panel">
                         <p class="fl-container-100 fl-force-left fl-text-align-center flutter-avatar">
-                            <img src="http://s3.amazonaws.com/twitter_production/profile_images/74256309/3136992916_06cd1aba7e_o_normal.jpg" 
-                                 alt="Colin's user picture" />
-                            <span id="name" class="flutter-name">Colin Clark</span>
+                            <img alt="Your picture" class="flutter-image"/>
+                            <span class="flutter-name">You</span>
                         </p>
                        
                         <form>
@@ -60,32 +59,10 @@
                     <!-- Friends and Tweets two-column panel -->
                     <div class="fl-centered flutter-friends-statuses">
                         <!-- Friends column -->
-                        <ul id="friends" class="fl-listmenu fl-container-200 fl-force-left">
-                            <li id="19539154">
-                                <img src="http://s3.amazonaws.com/twitter_production/profile_images/73280570/Darcie_Clark_0375_bigger.jpg"
-                                     alt="Darcie's user picture" />
-                                 Darcie Clark
-                             </li>
-                            <li id="752673"class="flutter-active">
-                                <img src="http://s3.amazonaws.com/twitter_production/profile_images/74432725/john.73_normal.png" 
-                                     alt="John's user picture"/>
-                                John Resig
-                            </li>
-                            <li id="5915782">
-                                <img src="http://s3.amazonaws.com/twitter_production/profile_images/28661132/Picture_2_normal.png"
-                                     alt="Jess' user picture" />
-                                 Jess Mitchell</li>
-                            <li id="17868497">
-                                <img src="http://s3.amazonaws.com/twitter_production/profile_images/66327737/Picture_4_normal.png"
-                                     alt="Filament's user picture" />
-                                Filament Group
-                            </li>
-                            <li id="12368532">
-                                <img src="http://s3.amazonaws.com/twitter_production/profile_images/44771622/RichardWorth_48x48_normal.jpg" 
-                                     alt="Richard's user picture" />
-                                Richard D. Worth
-                            </li>
+                        <ul id="friends" class="fl-listmenu fl-container-200 fl-force-left flutter-friends">
+                            <!-- Rendered friends will go here -->
                             
+                            <!-- This element is a template used to render out each friend -->
                              <li id="flutter-friend-template" class="flutter-hidden">
                                 <img src="urlGoesHere"
                                      alt="altTextGoesHere" />
@@ -94,10 +71,9 @@
                         
                         <!-- Tweets column -->
                         <ul id="tweets" class="flutter-tweets">
-                            <li>Microsoft Research just published a paper on implementing a browser like an Operating System: http://bit.ly/hXQOl</li>
-                            <li>I'm still watching Heroes even though I've lost all reason to care. Really happy they played Talking Heads in the last episode.</li>
-                            <li>Cinematic Titanic was awesome - they riffed 'Dynamite Brothers' (http://bit.ly/4wl8Q) and it was awfully perfect.</li>
-                            <li>I made some delicious french toast and linguica for breakfast. Yay for Saturdays!</li>
+                            <!-- Rendered Tweets will go here -->
+                            
+                            <!-- This element is a template used to render out each tweet -->
                             <li id="flutter-tweet-template" class="flutter-hidden">Status goes here</li>
                         </ul>        
                     </div>     
