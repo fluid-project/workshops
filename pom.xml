@@ -26,11 +26,11 @@
             with the "localdev" profile and can be overridden on the command line
             via the maven option -Dmaven.tomcat.home=/my/path/to/tomcat
         -->
-        <maven.tomcat.home>/path/to/uPortal-3.2.0-quick-start/apache-tomcat-6.0.24</maven.tomcat.home>
+        <maven.tomcat.home>/Users/jdb53/Downloads/uPortal-3.2.0-quick-start/apache-tomcat-6.0.24</maven.tomcat.home>
         
         <!-- Portlet dependency versions -->
         <spring.version>2.5.6</spring.version>
-        <resource-server.version>1.0.7-SNAPSHOT</resource-server.version>
+        <resource-server.version>1.0.7</resource-server.version>
         
     </properties>
 
@@ -123,7 +123,7 @@
             <dependency>
                 <groupId>org.jasig</groupId>
                 <artifactId>AjaxPortletSupport</artifactId>
-                <version>1.0.8</version>
+                <version>1.0.9</version>
             </dependency>
             <dependency>
                 <groupId>org.jasig.resourceserver</groupId>

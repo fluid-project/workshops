@@ -3,6 +3,6 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
     <!-- Proxy view -->
-    <bean id="proxyView" class="org.jasig.portlet.fliquor.mvc.view.ProxyView"/>
+    <bean id="proxyView" class="org.jasig.web.view.mvc.ProxyView"/>
     
 </beans>
