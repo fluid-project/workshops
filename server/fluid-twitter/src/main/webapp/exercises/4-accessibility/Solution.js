@@ -15,8 +15,8 @@ demo.a11y = demo.a11y || {};
         });
         
         // Make each friend activatable with the Enter and Space bar keys.
-        friendsList.children().fluid("activatable", function (friend) {
-            alert($(friend).text() + " was activated!");
+        friendsList.children("li").fluid("activatable", function (evt) {
+            alert($(evt.target).text() + " was activated!");
         });
     };
     
