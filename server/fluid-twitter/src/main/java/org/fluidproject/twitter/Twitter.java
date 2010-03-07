@@ -4,7 +4,7 @@ public class Twitter {
 	
 	public static final String JSON = ".json";
 	public static final String XML = ".xml";
-	private static final String USER_URL = "https://twitter.com/users/show"
+	private static final String USER_URL = "https://twitter.com/users/show";
 	private static final String FRIENDS_URL = "https://twitter.com/statuses/friends";
 	private static final String STATUSES_URL = "https://twitter.com/statuses/user_timeline";
 	private static final String STATUS_UPDATE_URL = "https://twitter.com/statuses/update";
@@ -13,6 +13,10 @@ public class Twitter {
 	
 	public Twitter(String format) {
 		currentFormat = format;
+	}
+	
+	public String getUserUrl() {
+		return USER_URL + currentFormat;
 	}
 	
 	public String getFriendsUrl() {
