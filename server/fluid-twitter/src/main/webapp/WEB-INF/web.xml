@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="fluid-twitter" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>
+	fluid-twitter</display-name>
+	<servlet>
+		<description>
+		Provides access to user data from Twitter</description>
+		<display-name>
+		User</display-name>
+		<servlet-name>User</servlet-name>
+		<servlet-class>
+		org.fluidproject.twitter.User</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		Provides access to friends data from Twitter</description>
+		<display-name>
+		Friends</display-name>
+		<servlet-name>Friends</servlet-name>
+		<servlet-class>
+		org.fluidproject.twitter.Friends</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		Provides access to Twitter status data.</description>
+		<display-name>
+		Statuses</display-name>
+		<servlet-name>Statuses</servlet-name>
+		<servlet-class>
+		org.fluidproject.twitter.Statuses</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>User</servlet-name>
+		<url-pattern>/User</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Friends</servlet-name>
+		<url-pattern>/Friends</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Statuses</servlet-name>
+		<url-pattern>/Statuses</url-pattern>
+	</servlet-mapping>
+</web-app>
