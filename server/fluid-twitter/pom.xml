@@ -10,7 +10,7 @@
   <version>1.0</version>
 
   <artifactId>fluid-twitter</artifactId>
-  <name>Fluid Twitter Server component</name>
+  <name>Flutter App</name>
   <groupId>org.fluidproject</groupId>
 
   <organization>
