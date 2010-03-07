@@ -1,15 +1,14 @@
 (function ($) {
     $(document).ready(function () {
         var friends = $("#friends li");
-        function selectFriend(friend) {
-            friends.removeClass("flutter-active");
-            friend.addClass("flutter-active");
-        }
-        // The friends list
-        friends.each(function(index, item) {
-            var jItem = $(item);
-            jItem.click(function (){selectFriend(jItem);});  
-        });
+        var activeClass = "flutter-active";
+        var selectFriend = function (friend) {
+            friends.not(friend).removeClass(activeClass);
+            friend.addClass(activeClass);
+        };
         
-    }); 
+        friends.click(function () {
+            selectFriend($(this));
+        });
+    });
 })(jQuery);
