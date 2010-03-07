@@ -9,7 +9,7 @@
         // The list items inside the friends list
         $("#friends li").addClass("blue");
         
-        // Everything with the class flutter-hidden
+        // Everything with the class fl-centered
         $(".fl-centered").addClass("red");
         
         // The first form element on the page

@@ -124,7 +124,7 @@ var fluid = fluid || {};
         });
         
         // Add a mouse click handler to each of the friend elements.
-        friendsList.delegate("li", "click", function(event){
+        that.friendsList.delegate("li", "click", function(event){
             that.selectFriend(this);
         });
     };

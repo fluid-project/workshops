@@ -1,9 +1,8 @@
 (function ($) {
     $(document).ready(function () {
-        var template = $("#tweets #flutter-tweet-template").remove();
+        var template = $("#flutter-tweet-template").remove();
         template.attr("id", "");
         var entryField = $("#status");
-        
         
         function updateStatus(newText) {
             var newNode = template.clone();
@@ -21,7 +20,5 @@
                 event.preventDefault();
             }
         });
-        
-        
     }); 
 })(jQuery);

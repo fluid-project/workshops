@@ -4,11 +4,11 @@
         function selectFriend(friend) {
             friends.removeClass("flutter-active");
             friend.addClass("flutter-active");
-        };
+        }
         // The friends list
         friends.each(function(index, item) {
             var jItem = $(item);
-            jItem.click(function (){selectFriend(jItem)});  
+            jItem.click(function (){selectFriend(jItem);});  
         });
         
     }); 
