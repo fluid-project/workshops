@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <title>Navigation List Demo</title>
+
+        <link type="text/css" rel="stylesheet" href="../../../../fluid-infusion/src/webapp/framework/fss/css/fss-mobile-layout.css" />
+        <link type="text/css" rel="stylesheet" href="../../../../fluid-infusion/src/webapp/framework/fss/css/fss-mobile-theme-iphone.css" />
+        <link type="text/css" rel="stylesheet" href="../../../../fluid-engage-core/shared/css/engage-mobile.css" />
+        <link type="text/css" rel="stylesheet" href="../../../../fluid-engage-core/components/navigationList/css/NavigationList.css" />
+
+        <script type="text/javascript" src="../../../../fluid-infusion/src/webapp/lib/jquery/core/js/jquery.js"></script>
+        <script type="text/javascript" src="../../../../fluid-infusion/src/webapp/framework/core/js/Fluid.js"></script>
+        <script type="text/javascript" src="../../../../fluid-infusion/src/webapp/framework/core/js/FluidDOMUtilities.js"></script>
+        <script type="text/javascript" src="../../../../fluid-infusion/src/webapp/framework/core/js/DataBinding.js"></script>
+        <script type="text/javascript" src="../../../../fluid-infusion/src/webapp/framework/renderer/js/fluidParser.js"></script>
+        <script type="text/javascript" src="../../../../fluid-infusion/src/webapp/framework/renderer/js/fluidRenderer.js"></script>
+        <script type="text/javascript" src="../../../../fluid-infusion/src/webapp/lib/fastXmlPull/js/fastXmlPull.js"></script>  
+        <script type="text/javascript" src="../../../../fluid-engage-core/framework/js/engageRenderUtils.js"></script>
+        <script type="text/javascript" src="../../../../fluid-engage-core/components/navigationList/js/NavigationList.js"></script>
+        <script type="text/javascript" src="../js/navListDemo.js"></script>
+    </head>
+    
+    <body class="fl-theme-iphone">
+        <div class="fl-navbar">
+            Navigation List
+            <a class="flc-navigationList-toggle fl-button fl-button-white">Toggle</a>
+        </div>
+        
+        <div class="flc-navigationList">
+            <ul class="flc-navigationList-listGroup fl-navigationList-container fl-list fl-list-menu fl-list-thumbnails">
+                <li class="flc-navigationList-items">
+                    <div class="flc-navigationList-linkContainer">
+                        <a class="flc-navigationList-link fl-engage-badged-thumbnail">
+                            <img class="flc-navigationList-image fl-icon"/>
+                            <img class="flc-navigationList-badge-icon fl-engage-badge-icon"
+                                src="../../../../fluid-engage-core/shared/images/media-badge.png" 
+                                alt="This artifact includes media" />
+                            <div class="fl-navigationList-textContainer">
+	                            <span class="flc-navigationList-titleText fl-navigationList-title">title/category</span>
+	                            <span class="flc-navigationList-descriptionText fl-link-summary fl-navigationList-description">description</span>
+	                        </div>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <script type="text/javascript">
+            demo.init(".flc-navigationList");
+        </script>
+
+    </body>
+</html>
