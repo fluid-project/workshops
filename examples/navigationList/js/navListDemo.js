@@ -52,12 +52,26 @@ var demo = demo || {};
         });
     };
     
+    var isGrid = false;
+    var changeToggleLabel = function (toggler) {
+        isGrid = !isGrid;
+        if (isGrid) {
+            toggler.text("List");
+        } else {
+            toggler.text("Grid")
+        }
+    };
+
     demo.init = function (container) {
         var navList = fluid.navigationList(container, {
             model: mapData(jasigFlickrPhotos)
         });
         
-        $(".flc-navigationList-toggle").click(function () {
+        var toggler = $(".flc-navigationList-toggle");
+        toggler.text("Grid");
+        
+        toggler.click(function () {
+            changeToggleLabel($(this));
             navList.toggleLayout();
         });
         
