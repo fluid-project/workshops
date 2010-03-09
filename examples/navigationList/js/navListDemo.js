@@ -63,18 +63,23 @@ var demo = demo || {};
     };
 
     demo.init = function (container) {
-        var navList = fluid.navigationList(container, {
-            model: mapData(jasigFlickrPhotos)
-        });
+        container = $(container);
         
-        var toggler = $(".flc-navigationList-toggle");
-        toggler.text("Grid");
+        var initNavList = function () {
+            var navList = fluid.navigationList(container, {
+                model: mapData(jasigFlickrPhotos)
+            });
+            
+            var toggler = $(".flc-navigationList-toggle");
+            toggler.text("Grid");
+            
+            toggler.click(function () {
+                changeToggleLabel($(this));
+                navList.toggleLayout();
+            });
+        };
         
-        toggler.click(function () {
-            changeToggleLabel($(this));
-            navList.toggleLayout();
-        });
-        
-        return navList;
+        var templateURL = "../../../fluid-engage-core/components/navigationList/html/NavigationList.html .flc-navigationList";
+        container.load(templateURL, null, initNavList);
     };
 })(jQuery);
