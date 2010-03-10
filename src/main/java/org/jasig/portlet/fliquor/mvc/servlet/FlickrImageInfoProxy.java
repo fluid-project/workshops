@@ -25,8 +25,8 @@ import org.springframework.web.servlet.ModelAndView;
  * @version $Revision$
  */
 @Controller
-@RequestMapping("/ajax/flickrSearch")
-public class FlickrJsonProxy {
+@RequestMapping("/ajax/flickrImageInfo")
+public class FlickrImageInfoProxy {
 
 	private String flickrBaseUrl = "http://api.flickr.com/services/rest/?format=json&nojsoncallback=1&content_type=1";
 
@@ -52,17 +52,9 @@ public class FlickrJsonProxy {
 		this.numberResults = numberResults;
 	}
 	
-	/**
-	 * Return a proxied view of the JSON search results for the user's 
-	 * search term.
-	 * 
-	 * @param request
-	 * @param searchTerm
-	 * @return
-	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView getFlickrSearchResults(HttpServletRequest request,
-			@RequestParam(value="searchTerm") String searchTerm) {
+	public ModelAndView getFlickrPhotoInfo(HttpServletRequest request,
+			@RequestParam(value="id") String photoId) {
 
 		/*
 		 * Generate the search URL for the user-specified search term and add
@@ -71,10 +63,10 @@ public class FlickrJsonProxy {
 
 		StringBuffer url = new StringBuffer();
 		url.append(flickrBaseUrl);
-		url.append("&method=").append("flickr.photos.search");
+		url.append("&method=").append("flickr.photos.getInfo");
 		url.append("&per_page=").append(this.numberResults);
 		url.append("&api_key=").append(this.apiKey);
-		url.append("&text=").append(searchTerm);
+		url.append("&photo_id=").append(photoId);
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put(ProxyView.URL, url.toString());
