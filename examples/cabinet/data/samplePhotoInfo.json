@@ -1,0 +1,36 @@
+{
+    "photo":{
+        "id":"4366552930", 
+        "secret":"30a7167c6a", 
+        "server":"2777", "farm":3, 
+        "dateuploaded":"1266447644", 
+        "isfavorite":0, 
+        "license":"0", 
+        "rotation":0, 
+        "owner":{
+			"nsid":"29979136@N03", 
+			"username":"jimhelwig", 
+			"realname":"", 
+			"location":""
+		}, 
+        "title":{"_content":"Town and Country Resort"}, 
+        "description":{"_content":"Location of the Jasig Spring 2010 Conference"}, 
+        "visibility":{"ispublic":1, "isfriend":0, "isfamily":0}, 
+        "dates":{"posted":"1266447644", "taken":"2008-02-11 11:16:59", "takengranularity":"0", "lastupdate":"1267657532"}, 
+        "views":"15", 
+        "editability":{"cancomment":0, "canaddmeta":0}, 
+        "usage":{"candownload":1, "canblog":0, "canprint":0, "canshare":0}, 
+        "comments":{"_content":"0"}, 
+        "notes":{"note":[]}, 
+        "tags":{"tag":[
+            {"id":"29956082-4366552930-1793298", "author":"29979136@N03", "raw":"jasig", "_content":"jasig", "machine_tag":0}, 
+            {"id":"29956082-4366552930-52358342", "author":"29979136@N03", "raw":"jasigsandiego10", "_content":"jasigsandiego10", "machine_tag":0}, 
+            {"id":"29956082-4366552930-52967390", "author":"29979136@N03", "raw":"jasigsandiego2010", "_content":"jasigsandiego2010", "machine_tag":0}
+        ]}, 
+        "urls":{"url":[
+            {"type":"photopage", "_content":"http:\/\/www.flickr.com\/photos\/29979136@N03\/4366552930\/"}
+        ]}, 
+        "media":"photo"
+    }, 
+    "stat":"ok"
+}

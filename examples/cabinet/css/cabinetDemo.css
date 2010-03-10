@@ -1,0 +1,31 @@
+.demo-list-key {
+    padding-right: 10px;
+    font-style:italic;
+    color: #646464;
+}
+
+.demo-image-cell {
+    background-color: #000000;
+    height: 240px;
+    width: 100%;
+    text-align: center;
+}
+
+.demo-image-content {
+    width: 100%;
+}
+
+.demo-image {
+    max-height: 240px;
+    max-width: 100%;
+}
+
+.demo-link {
+    padding: 5px;
+    background-color: #EEE;
+    -webkit-border-radius: 8px;
+}
+
+.demo-tags {
+    margin: 20px;
+}

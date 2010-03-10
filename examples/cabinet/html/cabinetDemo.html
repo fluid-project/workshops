@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <title>Cabinet Demo</title>
+
+        <link type="text/css" rel="stylesheet" href="../../../fluid-infusion/src/webapp/framework/fss/css/fss-layout.css" />
+        <link type="text/css" rel="stylesheet" href="../../../fluid-infusion/src/webapp/framework/fss/css/fss-text.css" />
+        <link type="text/css" rel="stylesheet" href="../../../fluid-infusion/src/webapp/framework/fss/css/fss-transitions.css" />
+        <link type="text/css" rel="stylesheet" href="../../../fluid-infusion/src/webapp/framework/fss/css/fss-mobile-layout.css" />
+        <link type="text/css" rel="stylesheet" href="../../../fluid-infusion/src/webapp/framework/fss/css/fss-mobile-theme-iphone.css" />
+        <link type="text/css" rel="stylesheet" href="../../../fluid-engage-core/components/cabinet/css/Cabinet.css" />
+        <link type="text/css" rel="stylesheet" href="../css/cabinetDemo.css" />
+
+        <script type="text/javascript" src="../../../fluid-infusion/src/webapp/lib/jquery/core/js/jquery.js"></script>
+        <script type="text/javascript" src="../../../fluid-infusion/src/webapp/lib/jquery/ui/js/ui.core.js"></script>
+        <script type="text/javascript" src="../../../fluid-infusion/src/webapp/lib/jquery/plugins/delegate/js/jquery.delegate.js"></script>
+        <script type="text/javascript" src="../../../fluid-infusion/src/webapp/framework/core/js/jquery.keyboard-a11y.js"></script>
+        <script type="text/javascript" src="../../../fluid-infusion/src/webapp/framework/core/js/Fluid.js"></script>
+        <script type="text/javascript" src="../../../fluid-infusion/src/webapp/framework/core/js/FluidDOMUtilities.js"></script>
+        <script type="text/javascript" src="../../../fluid-infusion/src/webapp/framework/core/js/DataBinding.js"></script>
+        <script type="text/javascript" src="../../../fluid-infusion/src/webapp/framework/renderer/js/fluidParser.js"></script>
+        <script type="text/javascript" src="../../../fluid-infusion/src/webapp/framework/renderer/js/fluidRenderer.js"></script>
+        <script type="text/javascript" src="../../../fluid-infusion/src/webapp/lib/fastXmlPull/js/fastXmlPull.js"></script>
+        <script type="text/javascript" src="../../../fluid-engage-core/framework/js/engageRenderUtils.js"></script>
+        <script type="text/javascript" src="../../../fluid-engage-core/components/cabinet/js/Cabinet.js"></script>
+        <script type="text/javascript" src="../js/cabinetDemo.js"></script>
+    </head>
+    
+    <body class="fl-theme-iphone">
+        <div class="fl-table demo-image-content">
+            <div class="fl-table-cell demo-image-cell">
+                <img class="demo-image" src="" alt=""/>
+            </div>
+        </div>
+        
+        <div class="cabinet">
+            <div class="flc-cabinet-drawer">
+                <div class="flc-cabinet-handle">
+                    <h2 class="flc-cabinet-header">Info</h2>
+                </div>
+                <div class="flc-cabinet-contents fl-col-mixed">
+                    <ol class="fl-list">
+                        <li>
+                            <span class="demo-list-key">Title:</span><span class="demo-title-text">Title of Image</span>
+                        </li>
+                        <li>
+                            <span class="demo-list-key">Description:</span><span class="demo-desc-text">Some Description Text</span>
+                        </li>
+                        <li>
+                            <span class="demo-list-key">Date:</span><span class="demo-date-text">Today</span>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="flc-cabinet-drawer">
+                <div class="flc-cabinet-handle">
+                    <h2 class="flc-cabinet-header">Tags</h2>
+                </div>
+                <div class="flc-cabinet-contents">
+                    <div class="demo-tags">
+                        <a class="demo-link" href="http://www.flickr.com/photos/tags/jasig/">tag</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+//            fluid.cabinet(".cabinet");
+            demo.initCabinetView(".cabinet");
+        </script>
+    </body>
+</html>
