@@ -1,3 +1,5 @@
+/*global fluid, alert, jQuery*/
+
 var demo = demo || {};
 
 (function ($) {
@@ -13,9 +15,9 @@ var demo = demo || {};
                 children: fluid.transform(photo.tags.tag, function (tag) {
                     var name = tag.raw;
                     return {
-                        tags: {
+                        tag: {
                             linktext: name,
-                            target: fluid.stringTemplate(that.options.strings.tagURLTemplate, {tag: name})
+                            target: fluid.stringTemplate(that.options.strings.tagURLTemplate, {tag: name}) 
                         }
                     };
                 })
@@ -49,7 +51,7 @@ var demo = demo || {};
         $.ajax({
             url: opts.model.dataFeedURL,
             dataType: "json",
-//            data: {id: opts.model.photoID},
+            data: {id: opts.model.photoID},
             success: setup,
             error: function (xhr, textstatus, error) {
                 alert("The Following error was thrown: \n" + error);
@@ -83,7 +85,8 @@ var demo = demo || {};
             imageTitle: ".demo-title-text",
             imageDesc: ".demo-desc-text",
             imageDate: ".demo-date-text",
-            tags: ".demo-link"
+            tags: ".demo-link-container",
+            tag: ".demo-link"
         },
         
         strings: {
