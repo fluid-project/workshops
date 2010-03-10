@@ -4,28 +4,65 @@ var demo = demo || {};
 
 (function ($) {
 
-    var makeProtoComponents = function (that) {
-        var photo = that.model.photo;
-        var proto = {
-            image: {target: fluid.stringTemplate(that.options.strings.imageURLTemplate, photo)},
-            imageTitle: "%photo.title._content",
-            imageDesc: "%photo.description._content",
-            imageDate: "%photo.dates.taken",
-            tags: {
-                children: fluid.transform(photo.tags.tag, function (tag) {
-                    var name = tag.raw;
-                    return {
-                        tag: {
-                            linktext: name,
-                            target: fluid.stringTemplate(that.options.strings.tagURLTemplate, {tag: name}) 
-                        }
-                    };
-                })
-            }
+    var render = function (that) {
+        var sel = that.options.selectors;
+        var str = that.options.strings;
+        var pmod = that.model.photo;
+        var selectorMap = [
+            {id: "image", selector: sel.image},
+            {id: "imageTitle", selector: sel.imageTitle},
+            {id: "imageDesc", selector: sel.imageDesc},
+            {id: "imageDate", selector: sel.imageDate},
+            {id: "tags:", selector: sel.tags},
+            {id: "tag", selector: sel.tag}
+        ];
+        
+        var generateTree = function () {
+            var tree = {
+                children: [
+                    {
+                        ID: "imageTitle",
+                        value: pmod.title._content
+                    },
+                    {
+                        ID: "imageDesc",
+                        value: pmod.description._content
+                    },
+                    {
+                        ID: "imageDate",
+                        value: pmod.dates.taken
+                    },
+                    {
+                        ID: "image",
+                        target: fluid.stringTemplate(that.options.strings.imageURLTemplate, pmod)
+                    }
+                ]
+            };
+            
+            var repeated = fluid.transform(pmod.tags.tag, function (tag) {
+                var name = tag.raw;
+                console.log(name);
+                return {
+                    ID: "tags:",
+                    children: [{
+                        ID: "tag",
+                        linktext: name,
+                        target: fluid.stringTemplate(str.tagURLTemplate, {tag: name})
+                    }]
+                };
+            });
+            
+            tree.children = tree.children.concat(repeated);
+            
+            return tree;
         };
-        return proto;
+        
+        var options = {
+            cutpoints: selectorMap
+        };
+        
+        return fluid.selfRender(that.container, generateTree(), options);
     };
-
     
     var setupSubcomponents = function (that) {
         fluid.initSubcomponent(that, "cab", [that.container, fluid.COMPONENT_OPTIONS]);
@@ -34,16 +71,8 @@ var demo = demo || {};
     var getData = function (that) {
         
         var setup = function (model) {
-            var messageLocator = fluid.messageLocator(that.options.strings, fluid.stringTemplate);
             that.model = model;
-            that.render = fluid.engage.renderUtils.createRendererFunction(that.container, that.options.selectors, {
-                repeatingSelectors: ["tags"],
-                rendererOptions: {
-                    messageLocator: messageLocator,
-                    model: that.model
-                }
-            });
-            that.refreshView();
+            render(that);
             setupSubcomponents(that);
         };
         
@@ -61,14 +90,6 @@ var demo = demo || {};
     
     demo.initCabinetView = function (container, options) {
         var that = fluid.initView("demo.initCabinetView", container, options);
-        
-        var expander = fluid.renderer.makeProtoExpander({ELstyle: "%"});
-        
-        that.refreshView = function () {
-            var protoTree = makeProtoComponents(that);
-            var tree = expander(protoTree);
-            that.render(tree);
-        };
         
         getData(that);
         
