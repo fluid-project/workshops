@@ -14,8 +14,8 @@ import org.springframework.stereotype.Component;
 public class FliquorViewSelectorImpl implements IFliquorViewSelector {
 	
 	private String normalFliquorView = "fliquor";
-	private String mobileFliquorView = "fliquor";
-	private String maximizedFliquorView = "fliquorWide";
+	private String mobileFliquorView = "fliquorMobile";
+	private String maximizedFliquorView = "fliquor";
 	
 	private List<Pattern> mobileDeviceRegexes = null;
 	

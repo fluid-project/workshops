@@ -4,6 +4,10 @@
 <%@ taglib prefix="rs" uri="http://www.jasig.org/resource-server" %>
 
 <c:set var="namespace"><portlet:namespace/></c:set>
+<portlet:renderURL var="imageInfoUrl">
+    <portlet:param name="action" value="imageInfo"/>
+    <portlet:param name="photoID" value="PHOTOID"/>
+</portlet:renderURL> 
 
 <link type="text/css" rel="stylesheet" href="<c:url value="/css/fliquor.css"/>" />
 
@@ -53,10 +57,16 @@
 
     ${namespace}.jQuery(function(){
         var $ = ${namespace}.jQuery;
-	    $(document).ready(function () {
-	        var fliq = fliquor.imageViewer("#${ namespace }fliquorContainer", 
-	    	        { url: '<c:url value="/ajax/flickrSearch"/>' });
-	    });
-	});
+        $(document).ready(function () {
+            var fliq = fliquor.imageViewer("#${ namespace }fliquorContainer", 
+                { 
+                    url: '<c:url value="/ajax/flickrSearch"/>',
+                    strings: {
+                        userPage: "${ imageInfoUrl }".replace("PHOTOID","%id")
+                    }
+                }
+            );
+        });
+    });
 </script>
     

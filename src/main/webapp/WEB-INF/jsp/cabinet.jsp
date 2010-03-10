@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="portlet" uri="http://java.sun.com/portlet" %>
 <%@ taglib prefix="rs" uri="http://www.jasig.org/resource-server" %>
+<portlet:renderURL var="searchUrl">
+</portlet:renderURL>
 
 <c:set var="namespace"><portlet:namespace/></c:set>
 
@@ -13,6 +15,8 @@
 <script type="text/javascript" src="<c:url value="/scripts/engageRenderUtils.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/scripts/Cabinet.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/scripts/cabinetDemo.js"/>"></script>
+
+<p><a href="${ searchUrl }">Back to image search</a></p>
 
 <div class="cabinet">
     <div class="fl-table demo-image-content">
