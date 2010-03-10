@@ -88,15 +88,15 @@ var demo = demo || {};
         });
     };
     
-    demo.initCabinetView = function (container, options) {
-        var that = fluid.initView("demo.initCabinetView", container, options);
+    demo.imageInfo = function (container, options) {
+        var that = fluid.initView("demo.imageInfo", container, options);
         
         getData(that);
         
         return that;
     };
     
-    fluid.defaults("demo.initCabinetView", {
+    fluid.defaults("demo.imageInfo", {
         cab: {
             type: "fluid.cabinet"
         },
