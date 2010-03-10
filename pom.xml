@@ -26,7 +26,7 @@
             with the "localdev" profile and can be overridden on the command line
             via the maven option -Dmaven.tomcat.home=/my/path/to/tomcat
         -->
-        <maven.tomcat.home>/path/to/uPortal-3.2.1-quick-start-dev/uPortal-3.2.1-quick-start/apache-tomcat-6.0.24</maven.tomcat.home>
+        <maven.tomcat.home>/path/to/mobile-seminar/uPortal-mobile-quickstart/apache-tomcat-6.0.24</maven.tomcat.home>
         
         <!-- Portlet dependency versions -->
         <spring.version>2.5.6</spring.version>
