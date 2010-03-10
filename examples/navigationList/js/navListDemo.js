@@ -1,12 +1,16 @@
+/*global jQuery, fluid*/
+"use strict";
 
 var demo = demo || {};
 
 (function ($) {
+    // String templates used to create valid URLs to Flickr.
     var imageURLTemplate = "http://farm%farm.static.flickr.com/%server/%id_%secret_m.jpg";
     var userPageURLTemplate = "http://www.flickr.com/photos/%owner/%id";
     
+    // This is sample data captured from Flickr, enabling us to preview the page from the file system.
     var jasigFlickrPhotos = {
-        "photos":{
+        "photos": {
             "page":1, 
             "pages":6, 
             "perpage":25, 
@@ -43,6 +47,7 @@ var demo = demo || {};
     };
     
     var mapData = function (flickrData) {
+        // Transform Flickr's model into something more suitable for presenting to the user.
         return fluid.transform(flickrData.photos.photo, function (photo) {
             return {
                 image: fluid.stringTemplate(imageURLTemplate, photo),
@@ -52,33 +57,38 @@ var demo = demo || {};
         });
     };
     
-    var isGrid = false;
-    var changeToggleLabel = function (toggler) {
-        isGrid = !isGrid;
-        if (isGrid) {
-            toggler.text("List");
-        } else {
-            toggler.text("Grid")
-        }
+    var setupToggler = function () {
+        var toggler = $(".flc-navigationList-gridToggle");
+        
+        // Add a few extra styles and some user-presentable text to the toggle button.
+        // This works around a bug in Nav List where the toggle button is, well, a bit ugly.
+        toggler.wrap("<div class=\"demo-button-bar\">");
+        toggler.addClass("fl-button fl-button-white");
+        toggler.text("Grid");
+        
+        // Bind a click handler to change the text of the button. Nav List will do the rest.
+        toggler.click(function () {
+            if (toggler.text() === "Grid") {
+                toggler.text("List");
+            } else {
+                toggler.text("Grid");
+            }
+        });
     };
-
+    
     demo.init = function (container) {
         container = $(container);
         
         var initNavList = function () {
+            // Instantiate the Navigation List, passing it the transformed JSON model.
             var navList = fluid.navigationList(container, {
                 model: mapData(jasigFlickrPhotos)
             });
             
-            var toggler = $(".flc-navigationList-toggle");
-            toggler.text("Grid");
-            
-            toggler.click(function () {
-                changeToggleLabel($(this));
-                navList.toggleLayout();
-            });
+            setupToggler();
         };
         
+        // Load the Screen Navigator's template via AJAX.
         var templateURL = "../../../fluid-engage-core/components/navigationList/html/NavigationList.html .flc-navigationList";
         container.load(templateURL, null, initNavList);
     };
