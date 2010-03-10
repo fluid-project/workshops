@@ -29,3 +29,11 @@
 .demo-tags {
     margin: 20px;
 }
+
+.demo-info-text {
+    display: block;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    width: auto;
+}

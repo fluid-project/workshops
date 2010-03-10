@@ -81,12 +81,12 @@ var demo = demo || {};
         },
         
         selectors: {
-            image: ".demo-image",
-            imageTitle: ".demo-title-text",
-            imageDesc: ".demo-desc-text",
-            imageDate: ".demo-date-text",
-            tags: ".demo-link-container",
-            tag: ".demo-link"
+            image: ".dc-image",
+            imageTitle: ".dc-title-text",
+            imageDesc: ".dc-desc-text",
+            imageDate: ".dc-date-text",
+            tags: ".dc-link-container",
+            tag: ".dc-link"
         },
         
         strings: {
